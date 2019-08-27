@@ -7,6 +7,10 @@ app = Flask(__name__)
 def index():
     return render_template('template.html')
 
+@app.route('/products')
+def products():
+    """Renders the products page."""
+    return render_template('products.html')
 
 @app.route('/hello')
 def hello():

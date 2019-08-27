@@ -42,7 +42,7 @@
                         <a class="nav-link text-primary" href="products.html">Products</a>
                     </li>
                     <!-- Create session checking here -->
-                    IF LOGGED IN:
+                    {% if login==True %}
                     <!-- ---------------------------------------------------- -->
                     <li class="nav-item">
                         <a class="nav-link text-primary" href="profile.html">Profile</a>
@@ -51,7 +51,7 @@
                         <a class="nav-link text-primary" href="logout.html">Log Out</a>
                     </li>
                     <!-- End session checking here -->
-                    ELSE:
+                    {% else %}
                     <!-- ---------------------------------------------------- -->
                     <li class="nav-item">
                         <a class="nav-link text-primary" href="login.html">Log In</a>
@@ -59,14 +59,14 @@
                     <li class="nav-item">
                         <a class="nav-link text-primary" href="register.html">Register</a>
                     </li>
-
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container bg-light pagebody">
         <!-- BODY GOES HERE (other pages extend this template!) -->
-        Body goes here...
+        {% block content %}{% endblock %}
         <!-- ---------------------------------------------------- -->
     </div>
 

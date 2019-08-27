@@ -18,7 +18,7 @@ def hello():
 
 
 @app.route('/profile')
-def hello():
+def profile():
     return render_template('profile.html')
 
 

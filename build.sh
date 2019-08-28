@@ -5,3 +5,5 @@ nodeenv -p
 deactivate
 source venv/bin/activate
 npm install -g bower
+npm install
+bower install

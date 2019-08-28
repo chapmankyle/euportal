@@ -1,0 +1,22 @@
+{
+  "name": "euportal",
+  "version": "1.0.0",
+  "description": "## Milestones for sprint 1 Liza and Hendrik start with UI \\ Klensch and Kyle start with Java \\ Pierre starts with DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chapmankyle/euportal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chapmankyle/euportal/issues"
+  },
+  "homepage": "https://github.com/chapmankyle/euportal#readme",
+  "devDependencies": {
+    "bower": "^1.8.8"
+  }
+}

@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/vim,node,java,flask,python,intellij,intellij+all,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=vim,node,java,flask,python,intellij,intellij+all,visualstudiocode
 
+node_modules
 ### Flask ###
 instance/*
 !instance/.gitignore

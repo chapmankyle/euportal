@@ -1,14 +1,14 @@
-# EUPortal
+# minimal-flask-react
 
-## Milestones for sprint 1
-Liza and Hendrik start with UI \
-Klensch and Kyle start with Java \
-Pierre starts with DB
+Based on https://github.com/rwieruch/minimal-react-webpack-babel-setup
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Run Locally
 
-Please make sure to update tests as appropriate.
+1. Clone this repo: `git clone git@github.com:jwkvam/minimal-flask-react.git`
+2. npm install
+3. npm run dev
+4. pip install -r requirements.txt
+5. python server.py
+6. Goto http://localhost:3000
 
-## License
-Stellies
+If you would like to have webpack rebuild your javascript any time your React code changes, enter `npm run start` in a different terminal.

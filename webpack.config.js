@@ -1,28 +1,18 @@
-var config = {
-entry: './static/js/main.js',
-
-output: {
-path: './static/js/',
-filename: 'index.js'
-},
-
-devServer: {
-inline: true,
-port: 5000
-},
-
-module: {
-loaders: [
-  {
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
-    loader: 'babel',
-    query: {
-      presets: ['es2015', 'react']
+module.exports = {
+    entry: [
+        __dirname + '/static/js/main.js'
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            }
+        ]
+    },
+    output: {
+        path: __dirname + '/static',
+        filename: 'bundle.js'
     }
-  }
-]
-}
-}
-
-module.exports = config;
+};

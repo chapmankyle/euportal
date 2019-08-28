@@ -1,3 +1,2 @@
-#!/bin/bash
-source venv/bin/activate
-python app.py
+npm run dev
+python3 server.py

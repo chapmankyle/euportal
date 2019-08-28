@@ -1,30 +1,21 @@
 {
-  "name": "euportal",
-  "version": "1.0.0",
-  "description": "## Milestones for sprint 1 Liza and Hendrik start with UI \\ Klensch and Kyle start with Java \\ Pierre starts with DB",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --hot"
+    "dev": "webpack --mode development",
+    "start": "webpack --mode development --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chapmankyle/euportal.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chapmankyle/euportal/issues"
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   },
-  "homepage": "https://github.com/chapmankyle/euportal#readme",
   "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.6",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "webpack": "^4.39.3",
-    "webpack-dev-server": "^3.8.0"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   }
 }

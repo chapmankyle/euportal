@@ -4,7 +4,8 @@
   "description": "## Milestones for sprint 1 Liza and Hendrik start with UI \\ Klensch and Kyle start with Java \\ Pierre starts with DB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,14 @@
     "url": "https://github.com/chapmankyle/euportal/issues"
   },
   "homepage": "https://github.com/chapmankyle/euportal#readme",
-  "devDependencies": {
-    "bower": "^1.8.8"
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "webpack": "^4.39.3",
+    "webpack-dev-server": "^3.8.0"
   }
 }

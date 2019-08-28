@@ -1,5 +1,5 @@
 virtualenv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 nodeenv -p
 npm install

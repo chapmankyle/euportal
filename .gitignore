@@ -48,6 +48,14 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+#react
+asset-manifest*
+service-worker.js
+*chunk.js
+flask-backend/static/react/
+flask-backend/templates/
+
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -465,3 +473,5 @@ tags
 .history
 venv
 # End of https://www.gitignore.io/api/vim,node,java,flask,python,intellij,intellij+all,visualstudiocode
+flask-backend/templates/index.html
+flask-backend/templates/index.html

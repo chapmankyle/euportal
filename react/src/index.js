@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap/';
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -1,8 +1,13 @@
 import React from 'react';
+import './App.css';
 
 class Profile extends React.Component {
     render() {
-        return <button>Hello world</button>
+        return (
+            <div class='profile'>
+                <h1>Profile</h1>
+            </div>
+        );
     }
 }
 

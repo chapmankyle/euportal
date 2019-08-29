@@ -1,2 +1,4 @@
-npm run dev
-python3 server.py
+cd react-frontend
+npm run build
+cd ../flask-backend
+python3 main.py

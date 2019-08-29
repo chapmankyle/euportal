@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-export NODE_PATH=/home/hennie/Work/EUPortal/euportal/react/venv/lib/node_modules
-export NPM_CONFIG_PREFIX=/home/hennie/Work/EUPortal/euportal/react/venv
-export npm_config_prefix=/home/hennie/Work/EUPortal/euportal/react/venv
-exec /home/hennie/Work/EUPortal/euportal/react/venv/bin/node "$@"

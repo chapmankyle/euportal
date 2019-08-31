@@ -1,5 +1,6 @@
 ### Node ###
 react/node_modules/
+react/venv/
 
 ### Flask ###
 instance/*
@@ -46,13 +47,10 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-#react
+# React
 asset-manifest*
 service-worker.js
 *chunk.js
-flask-backend/static/react/
-flask-backend/templates/
-
 
 # Unit test / coverage reports
 htmlcov/

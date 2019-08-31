@@ -7,6 +7,15 @@ def index():
 	"""Renders the index page."""
 	return render_template("index.html", token="Welcome")
 
+@app.route("/products/id/<id>")
+def product(pid):
+	if isinstance(pid, int):
+		productID = int(pid)
+		t = "Product " + str(pid)
+		return render_template("product.html", title=t, id=productID)
+	
+	return render_template("index.html", token="Welcome")
+
 if __name__ == "__main__":
 	"""Run server in debug mode."""
 	app.run(debug=True)

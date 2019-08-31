@@ -1,6 +1,11 @@
 ### Node ###
 react/node_modules/
 react/venv/
+react/public/*manifest*
+precache*
+service-worker*
+*.chunk*
+runtime~main.*
 
 ### Flask ###
 instance/*

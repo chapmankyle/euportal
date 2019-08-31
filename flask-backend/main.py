@@ -1,9 +1,21 @@
-import flask
+from flask import Flask, render_template
 
-app = flask.Flask("__main__")
+app = Flask("__main__")
 
 @app.route("/")
 def index():
-    return flask.render_template("index.html", token="Welcome")
+	"""Renders the index page."""
+	return render_template("index.html", token="Welcome")
 
-app.run(debug=True)
+@app.route("/products/id/<id>")
+def product(pid):
+	if isinstance(pid, int):
+		productID = int(pid)
+		t = "Product " + str(pid)
+		return render_template("product.html", title=t, id=productID)
+	
+	return render_template("index.html", token="Welcome")
+
+if __name__ == "__main__":
+	"""Run server in debug mode."""
+	app.run(debug=True)

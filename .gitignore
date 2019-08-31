@@ -1,8 +1,7 @@
+### Node ###
+react/node_modules/
+react/venv/
 
-# Created by https://www.gitignore.io/api/vim,node,java,flask,python,intellij,intellij+all,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=vim,node,java,flask,python,intellij,intellij+all,visualstudiocode
-
-node_modules
 ### Flask ###
 instance/*
 !instance/.gitignore
@@ -48,13 +47,10 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-#react
+# React
 asset-manifest*
 service-worker.js
 *chunk.js
-flask-backend/static/react/
-flask-backend/templates/
-
 
 # Unit test / coverage reports
 htmlcov/

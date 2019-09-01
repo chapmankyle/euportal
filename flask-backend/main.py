@@ -8,7 +8,7 @@ def index():
 	return render_template("index.html", token="Welcome")
 
 
-@app.route("/<link>")
+@app.route("/<path:link>")
 def other(link):
 	"""Renders the Every other page for react."""
 	return render_template("index.html", token="Welcome")

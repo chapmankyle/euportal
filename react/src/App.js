@@ -1,11 +1,15 @@
 
 import React from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap/';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Landing from "./landing";
 import Profile from "./profile";
+import Products from "./products";
+import SingleProduct from "./singleProduct";
 import Customize from "./customize";
+import Login from "./login";
+import Register from "./register";
 import "./App.css"
 
 class App extends React.Component{
@@ -26,9 +30,10 @@ function NavBar() {
         <Navbar.Brand> My Company </Navbar.Brand>
         <Navbar.Collapse>
           <Nav className="mr-auto" pullRight>
-            <NavLink class="link" to="/">Home</NavLink>
-            <NavLink class="link" to="/profile">Profile</NavLink>
-            <NavLink class="link" to="/customize">Customize</NavLink>
+            <NavLink className="link" to="/">Home</NavLink>
+            <NavLink className="link" to="/profile">Profile</NavLink>
+            <NavLink className="link" to="/customize">Customize</NavLink>
+            <NavLink className="link" to="/products">Products</NavLink>
           </Nav>
         </Navbar.Collapse>
         <Form inline>
@@ -37,10 +42,16 @@ function NavBar() {
         </Form>
       </Navbar>
 
-      <Route exact path="/" component={Landing} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/customize" component={Customize} />
-
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/customize" component={Customize} />
+        <Route exact path="/products" component={Products} />
+        <Route exact path="/products/:id" component={SingleProduct} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Switch>
     </Router>
   );
 }

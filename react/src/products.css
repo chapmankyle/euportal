@@ -1,0 +1,13 @@
+.pg-title {
+	margin-bottom: 2rem;
+}
+
+.trans {
+	overflow: hidden;
+	transition: all 0.5s ease;
+}
+
+.trans:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}

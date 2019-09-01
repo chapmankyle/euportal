@@ -10,6 +10,7 @@ import SingleProduct from "./singleProduct";
 import Customize from "./customize";
 import Login from "./login";
 import Register from "./register";
+import Error from "./error";
 import "./App.css"
 
 class App extends React.Component{
@@ -51,6 +52,7 @@ function NavBar() {
         <Route path="/profile" component={Profile} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/*" component={Error} />
       </Switch>
     </Router>
   );

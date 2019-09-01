@@ -40,9 +40,9 @@ function LookAndFeel() {
     return (
         <Col>
             <h2>Look and Feel</h2>
-            <h4>Primary Color</h4>: Bark Grey <br />
-            <h4>Secondary Color</h4>: Light Blue/Grey<br />
-            <h4>Accent Color</h4>: Light Blue <br /><br />
+            <h6>Primary Color</h6>Dark Grey <br />
+            <h6>Secondary Color</h6>Light Blue/Grey<br />
+            <h6>Accent Color</h6>Light Blue <br /><br />
             <Button>Edit Look And Feel</Button>
         </Col>
     );

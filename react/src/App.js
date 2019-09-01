@@ -5,6 +5,8 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap/';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Landing from "./landing";
 import Profile from "./profile";
+import Login from "./login";
+import Register from "./register";
 import "./App.css"
 
 class App extends React.Component{
@@ -27,6 +29,8 @@ function NavBar() {
           <Nav className="mr-auto" pullRight>
             <NavLink class="link" to="/">Home</NavLink>
             <NavLink class="link" to="/profile">Profile</NavLink>
+            <NavLink class="link" to="/login">Login</NavLink>
+            <NavLink class="link" to="/register">Register</NavLink>
           </Nav>
         </Navbar.Collapse>
         <Form inline>
@@ -37,6 +41,8 @@ function NavBar() {
 
       <Route exact path="/" component={Landing} />
       <Route path="/profile" component={Profile} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
     </Router>
   );
 }

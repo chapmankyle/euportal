@@ -8,6 +8,8 @@ import Profile from "./profile";
 import Products from "./products";
 import SingleProduct from "./singleProduct";
 import Customize from "./customize";
+import Login from "./login";
+import Register from "./register";
 import "./App.css"
 
 class App extends React.Component{
@@ -46,8 +48,10 @@ function NavBar() {
         <Route path="/customize" component={Customize} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={SingleProduct} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </Switch>
-
     </Router>
   );
 }

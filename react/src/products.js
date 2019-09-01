@@ -10,6 +10,8 @@ export default class Products extends React.Component {
       { name: 'Product Name 2', id: 2, text: 'Text for Product 2' },
       { name: 'Product Name 3', id: 3, text: 'Text for Product 3' }
     ];
+    // Need to check if user is admin -- If admin then show additional options
+    const admin = (window.location.pathname === '/products');
 
     return (
       <div>
@@ -29,11 +31,20 @@ export default class Products extends React.Component {
                   <div className="card-body">
                     <h5 className="card-title"><strong>{ item.name }</strong></h5>
                     <p className="card-text">{ item.text }</p>
+                    {admin ? (
+                      // TODO: Make buttons look beautiful
+                      <div>
+                        <Button>Edit</Button>
+                        <br/>
+                        <br/>
+                        <Button>Delete</Button>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
             )) : <h3>No Products Found</h3> }
-        </div>
+          </div>
         </Container>
 
       </div>  

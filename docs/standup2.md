@@ -11,8 +11,6 @@
 
 # What needs to be done before the next meeting
 - Each of us needs to start coding our section of the front end
--   
-
 
 # Obstacles
 - Need to do research on how React and Flask work together before we can start

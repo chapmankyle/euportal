@@ -16,9 +16,17 @@
   margin: 2rem !important;
 }
 
+.logoImg {
+  width: 10rem;
+}
+
 .card {
   margin-top: 3rem;
   width: 100%;
+}
+
+.categoriesButton {
+  margin: 2rem;
 }
 
 h1 {

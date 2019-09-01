@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
 import './App.css';
 import Img from 'react-image';
-import profile from './profile.png';
+import profile from './images/profile.png';
 
 class Profile extends React.Component {
     render() {

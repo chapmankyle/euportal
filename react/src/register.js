@@ -64,12 +64,12 @@ export default class Register extends Component {
           {/* <HelpBlock>Please check your email for the code.</HelpBlock> */}
         </FormGroup>
         <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Verify
+          block
+          bsSize="large"
+          disabled={!this.validateForm()}
+          type="submit"
+        >
+          Verify
           </Button>
       </form>
     );
@@ -104,17 +104,17 @@ export default class Register extends Component {
           />
         </FormGroup>
         <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit">
-            Register
+          block
+          bsSize="large"
+          disabled={!this.validateForm()}
+          type="submit">
+          Register
           </Button>
-          <hr />
-          <span>
-            Already have an account? &nbsp;
+        <hr />
+        <span>
+          Already have an account? &nbsp;
             <a href="/login">Sign In</a>
-          </span>
+        </span>
       </form>
     );
   }

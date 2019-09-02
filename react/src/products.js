@@ -7,8 +7,8 @@ export default class Products extends React.Component {
   render() {
 
     const list = [{ name: 'Product Name', id: 1, text: 'Text' },
-      { name: 'Product Name 2', id: 2, text: 'Text for Product 2' },
-      { name: 'Product Name 3', id: 3, text: 'Text for Product 3' }
+    { name: 'Product Name 2', id: 2, text: 'Text for Product 2' },
+    { name: 'Product Name 3', id: 3, text: 'Text for Product 3' }
     ];
     // Need to check if user is admin -- If admin then show additional options
     const admin = (window.location.pathname === '/products');
@@ -17,9 +17,9 @@ export default class Products extends React.Component {
       <div>
         <Jumbotron>
           <Container>
-              <Row>
-                <h1>Products Page!</h1>
-              </Row>
+            <Row>
+              <h1>Products Page!</h1>
+            </Row>
           </Container>
         </Jumbotron>
         <Container>
@@ -29,21 +29,21 @@ export default class Products extends React.Component {
                 <div className="card shadow trans">
                   <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
                   <div className="card-body">
-                    <h5 className="card-title"><strong>{ item.name }</strong></h5>
-                    <p className="card-text">{ item.text }</p>
+                    <h5 className="card-title"><strong>{item.name}</strong></h5>
+                    <p className="card-text">{item.text}</p>
                     {admin ? (
                       // TODO: Make buttons look beautiful
                       <div>
                         <Button>Edit</Button>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                         <Button>Delete</Button>
                       </div>
                     ) : null}
                   </div>
                 </div>
               </div>
-            )) : <h3>No Products Found</h3> }
+            )) : <h3>No Products Found</h3>}
           </div>
         </Container>
 

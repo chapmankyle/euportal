@@ -7,11 +7,11 @@ export default class SingleProduct extends React.Component {
     const { id } = this.props.match.params;
     return (
       <div>
-         <Jumbotron>
+        <Jumbotron>
           <Container>
-              <Row>
-                <h1>Products Page</h1>
-              </Row>
+            <Row>
+              <h1>Products Page</h1>
+            </Row>
           </Container>
         </Jumbotron>
         <Container>

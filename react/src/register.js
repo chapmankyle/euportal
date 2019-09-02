@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  FormLabel,
-  Button
-} from "react-bootstrap";
-import "./register.css";
+import { HelpBlock, FormGroup, FormControl, FormLabel, Button } from "react-bootstrap";
+import "./css/register.css";
 
 export default class Register extends Component {
   constructor(props) {
@@ -70,12 +64,12 @@ export default class Register extends Component {
           {/* <HelpBlock>Please check your email for the code.</HelpBlock> */}
         </FormGroup>
         <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Verify
+          block
+          bsSize="large"
+          disabled={!this.validateForm()}
+          type="submit"
+        >
+          Verify
           </Button>
       </form>
     );
@@ -110,13 +104,17 @@ export default class Register extends Component {
           />
         </FormGroup>
         <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Register
+          block
+          bsSize="large"
+          disabled={!this.validateForm()}
+          type="submit">
+          Register
           </Button>
+        <hr />
+        <span>
+          Already have an account? &nbsp;
+            <a href="/login">Sign In</a>
+        </span>
       </form>
     );
   }

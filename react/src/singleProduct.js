@@ -1,23 +1,23 @@
 import React from 'react';
 import { Container, Row, Jumbotron } from 'react-bootstrap/';
-import './products.css';
+import './css/products.css';
 
 export default class SingleProduct extends React.Component {
   render() {
     const { id } = this.props.match.params;
     return (
       <div>
-         <Jumbotron>
+        <Jumbotron>
           <Container>
-              <Row>
-                <h1>Products Page</h1>
-              </Row>
+            <Row>
+              <h1>Products Page</h1>
+            </Row>
           </Container>
         </Jumbotron>
         <Container>
           <h1 className="pg-title">Products Page for id: {id}</h1>
         </Container>
-      </div>  
+      </div>
     )
   }
 }

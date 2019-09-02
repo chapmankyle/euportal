@@ -5,6 +5,7 @@ import image1 from './images/products/product-1.jpg';
 import image2 from './images/products/product-2.jpg';
 import image3 from './images/products/product-3.jpg';
 import image4 from './images/products/product-4.jpg';
+import './css/products.css';
 
 export default class SingleProduct extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class SingleProduct extends React.Component {
 
     return (
       <div>
-         <Jumbotron>
+        <Jumbotron>
           <Container>
               <Row>
                 <h1>Bose QuietComfort 35 II Wireless Bluetooth Headphones</h1>
@@ -102,7 +103,7 @@ export default class SingleProduct extends React.Component {
             </Modal.Body>
           </Modal>
         </Container>
-      </div>  
+      </div>
     )
   }
 }

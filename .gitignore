@@ -1,3 +1,6 @@
+### React ###
+flask-backend/static/react/
+
 ### Node ###
 react/node_modules/
 react/venv/

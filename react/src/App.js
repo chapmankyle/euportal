@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import logo from './images/react.png';
 import Customize from "./customize";
+import Checkout from "./checkout";
 import Error from "./error";
 import Landing from "./landing";
 import Login from "./login";
@@ -63,6 +64,7 @@ function Layout() {
             <Route path="/landing" component={Landing} />
             <Route path="/profile" component={Profile} />
             <Route path="/customize" component={Customize} />
+            <Route path="/checkout" component={Checkout} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route path="/profile" component={Profile} />

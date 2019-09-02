@@ -6,7 +6,36 @@ a.active.link {
   color: white !important;
 }
 
-.mr-auto a {
+.center-text {
+  text-align: center;
+}
+
+.eu-footer {
+  margin: 0 auto;
+  padding: 0.35rem 0;
+}
+
+.page-container {
+  position: relative;
+  min-height: calc(100vh - 0px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+footer {
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  background-color: #fa8;
+}
+
+.push-footer {
+  margin-bottom: 1rem;
+}
+
+.push-right a {
   color: gray;
   padding: 4px;
   text-decoration: none;

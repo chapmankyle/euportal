@@ -1,6 +1,6 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { Container, Button, Jumbotron, CardDeck, Card } from 'react-bootstrap/';
+import { Container, Jumbotron, CardDeck, Card } from 'react-bootstrap/';
 import prodTemp from './images/dummy_600x.png'
 
 class Landing extends React.Component {

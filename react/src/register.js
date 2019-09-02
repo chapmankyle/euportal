@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HelpBlock, FormGroup, FormControl, FormLabel, Button } from "react-bootstrap";
+import { FormGroup, FormControl, FormLabel, Button } from "react-bootstrap";
 import "./css/register.css";
 
 export default class Register extends Component {

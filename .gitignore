@@ -1,5 +1,6 @@
 ### React ###
 flask-backend/static/react/
+flask-backend/templates/index.html
 
 ### Node ###
 react/node_modules/

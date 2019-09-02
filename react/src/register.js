@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  FormLabel,
-  Button
-} from "react-bootstrap";
-import "./register.css";
+import { HelpBlock, FormGroup, FormControl, FormLabel, Button } from "react-bootstrap";
+import "./css/register.css";
 
 export default class Register extends Component {
   constructor(props) {
@@ -113,10 +107,14 @@ export default class Register extends Component {
             block
             bsSize="large"
             disabled={!this.validateForm()}
-            type="submit"
-          >
+            type="submit">
             Register
           </Button>
+          <hr />
+          <span>
+            Already have an account? &nbsp;
+            <a href="/login">Sign In</a>
+          </span>
       </form>
     );
   }

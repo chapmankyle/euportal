@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Jumbotron } from 'react-bootstrap/';
-import './products.css';
+import './css/products.css';
 
 export default class SingleProduct extends React.Component {
   render() {
@@ -17,7 +17,7 @@ export default class SingleProduct extends React.Component {
         <Container>
           <h1 className="pg-title">Products Page for id: {id}</h1>
         </Container>
-      </div>  
+      </div>
     )
   }
 }

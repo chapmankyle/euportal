@@ -1,12 +1,12 @@
 import React from 'react';
 import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
-import './products.css';
+import './css/products.css';
 
 export default class Products extends React.Component {
-  
+
   render() {
 
-    const list = [{ name: 'Product Name', id: 1, text: 'Text' }, 
+    const list = [{ name: 'Product Name', id: 1, text: 'Text' },
       { name: 'Product Name 2', id: 2, text: 'Text for Product 2' },
       { name: 'Product Name 3', id: 3, text: 'Text for Product 3' }
     ];
@@ -47,7 +47,7 @@ export default class Products extends React.Component {
           </div>
         </Container>
 
-      </div>  
+      </div>
     )
   }
 }

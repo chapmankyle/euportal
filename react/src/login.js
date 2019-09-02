@@ -1,7 +1,7 @@
-import './App.css';
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "./login.css";
+import './css/App.css';
+import "./css/login.css";
 
 export default class Login extends Component {
   constructor(props) {
@@ -52,13 +52,16 @@ export default class Login extends Component {
             block
             bsSize="large"
             disabled={!this.validateForm()}
-            type="submit"
-          >
+            type="submit">
             Login
           </Button>
+          <hr />
+          <span>
+            Don't have an account? &nbsp;
+            <a href="/register">Create an Account</a>
+          </span>
         </form>
       </div>
     );
   }
 }
-

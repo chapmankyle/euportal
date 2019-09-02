@@ -1,21 +1,24 @@
-
 import React from "react";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap/';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Landing from "./landing";
-import Profile from "./profile";
-import Products from "./products";
-import SingleProduct from "./singleProduct";
+
+import logo from './images/react.png'
 import Customize from "./customize";
+import Landing from "./landing";
 import Login from "./login";
+import Products from "./products";
+import Profile from "./profile";
 import Register from "./register";
-import "./App.css"
+import SingleProduct from "./singleProduct";
+
+import "./css/App.css"
 
 class App extends React.Component{
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Header />
         <NavBar />
       </div>
@@ -27,23 +30,30 @@ function NavBar() {
   return (
     <Router>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand> My Company </Navbar.Brand>
-        <Navbar.Collapse>
-          <Nav className="mr-auto" pullRight>
-            <NavLink className="link" to="/">Home</NavLink>
-            <NavLink className="link" to="/profile">Profile</NavLink>
-            <NavLink className="link" to="/customize">Customize</NavLink>
-            <NavLink className="link" to="/products">Products</NavLink>
-          </Nav>
-        </Navbar.Collapse>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
+        <div className="container">
+          <Navbar.Brand href="/">
+            <img alt="" src={logo} width="30" height="30" className="d-inline-block align-top" />
+            {' Company Name '}
+          </Navbar.Brand>
+          <Navbar.Collapse>
+            <Nav className="mr-auto">
+              <NavLink className="link mr-4" to="/profile">Profile</NavLink>
+            </Nav>
+          <Form inline>
+            <Nav className="mr-auto">
+              <NavLink className="link mr-4" to="/products">Products</NavLink>
+              <NavLink className="link mr-4" to="/customize">Customize</NavLink>
+            </Nav>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-info">Search</Button>
+          </Form>
+          </Navbar.Collapse>
+        </div>
       </Navbar>
 
       <Switch>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={Login} />
+        <Route path="/landing" component={Landing} />
         <Route path="/profile" component={Profile} />
         <Route path="/customize" component={Customize} />
         <Route exact path="/products" component={Products} />

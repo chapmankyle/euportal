@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
-import './App.css';
 import Img from 'react-image';
-import logo from './images/react.jpg'
+import logo from './images/react.png'
+import './css/App.css';
 
 class Customize extends React.Component {
     render() {

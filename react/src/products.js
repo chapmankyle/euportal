@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
+import { Container, Row, Jumbotron, Button } from 'react-bootstrap/';
 import './css/products.css';
 
 export default class Products extends React.Component {

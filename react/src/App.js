@@ -11,6 +11,7 @@ import Login from "./login";
 import Products from "./products";
 import Profile from "./profile";
 import Register from "./register";
+import Error from "./error";
 import SingleProduct from "./singleProduct";
 
 import "./css/App.css"
@@ -61,6 +62,7 @@ function NavBar() {
         <Route path="/profile" component={Profile} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/*" component={Error} />
       </Switch>
     </Router>
   );

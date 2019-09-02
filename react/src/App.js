@@ -40,14 +40,17 @@ function NavBar() {
             <Nav className="mr-auto">
               <NavLink className="link mr-4" to="/profile">Profile</NavLink>
             </Nav>
-          <Form inline>
             <Nav className="mr-auto">
               <NavLink className="link mr-4" to="/products">Products</NavLink>
               <NavLink className="link mr-4" to="/customize">Customize</NavLink>
             </Nav>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-info">Search</Button>
-          </Form>
+            <Form inline>
+              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+              <Button variant="outline-info">Search</Button>
+            </Form>
+            <Nav className="mr-auto">
+              <NavLink className="link ml-4" to="/checkout">Cart</NavLink>
+            </Nav>
           </Navbar.Collapse>
         </div>
       </Navbar>

@@ -1,5 +1,13 @@
-.mr-auto a{
-  color: gray !important;
+* {
+  outline: none;
+}
+
+a.active.link {
+  color: white !important;
+}
+
+.mr-auto a {
+  color: gray;
   padding: 4px;
   text-decoration: none;
 }

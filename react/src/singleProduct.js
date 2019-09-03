@@ -19,15 +19,15 @@ export default class SingleProduct extends React.Component {
   render() {
     // Get Product ID
     const { id } = this.props.match.params;
-    
+
     const handleShow = (image) => setShow(image, true);
     const handleClose = () => setShow(null, false);
-    
+
     const setShow = (image, bool) => {
       this.setState({
         show: bool,
         image
-      })  
+      })
     };
 
     return (
@@ -43,7 +43,7 @@ export default class SingleProduct extends React.Component {
           <Row>
             <Col lg={7}>
               <Card>
-                <Image src={image1} className="mx-auto d-block" fluid 
+                <Image src={image1} className="mx-auto d-block" fluid
                   onClick={() => handleShow(image1)}/>
                 <div>
                   <Row>
@@ -87,14 +87,13 @@ export default class SingleProduct extends React.Component {
                     Unlock Bose AR* via a firmware update through the Bose Connect app
                   </li>
                   <li>
-                    Bose AR availability and functionality varies. Bose AR enhanced apps are currently available for iPhone and iPad users only. Apps for Android devices are in development. 
+                    Bose AR availability and functionality varies. Bose AR enhanced apps are currently available for iPhone and iPad users only. Apps for Android devices are in development.
                   </li>
                 </ul>
               </p>
             </Col>
           </Row>
-          
-          <h1 className="pg-title">Products Page for id: {id}</h1>
+
           <Modal show={this.state.show} onHide={handleClose}>
             <Modal.Header closeButton>
             </Modal.Header>

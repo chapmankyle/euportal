@@ -18,7 +18,7 @@ export default class SingleProduct extends React.Component {
 
   render() {
     // Get Product ID
-    const { id } = this.props.match.params;
+    // const { id } = this.props.match.params;
 
     const handleShow = (image) => setShow(image, true);
     const handleClose = () => setShow(null, false);

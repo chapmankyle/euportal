@@ -1,9 +1,14 @@
 import React from 'react';
-import { Container, Row, Jumbotron, Button } from 'react-bootstrap/';
+import { Container, Row, Jumbotron, Button, Card, CardDeck } from 'react-bootstrap/';
 import './css/products.css';
 
 export default class Products extends React.Component {
-
+  componentDidMount() {
+    fetch('/backend').then(res => res.json())
+    .then(res => {
+      console.log(res)
+    })
+  }
   render() {
 
     const list = [
@@ -17,13 +22,13 @@ export default class Products extends React.Component {
         name: 'Product Name 2',
         id: 2,
         text: 'Text for Product 2',
-        img: '../static/images/logo.png'
+        img: './images/dummy_600x.png'
       },
       {
         name: 'Product Name 3',
         id: 3,
         text: 'Text for Product 3',
-        img: '../static/images/logo.png'
+        img: './images/dummy_600x.png'
       }
     ];
 
@@ -40,11 +45,10 @@ export default class Products extends React.Component {
           </Container>
         </Jumbotron>
         <Container>
-          <div className="row justify-content-center items">
+              <CardDeck>
             {list ? list.map(item => (
-              <div className="col-md-4" onClick={() => (this.props.history.push(`/products/${item.id}`))}>
-                <div className="card shadow trans">
-                  <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
+                <Card className="shadow trans" onClick={() => (this.props.history.push(`/products/${item.id}`))}>
+                  <img className="card-img-top" src='../static/images/logo.png' alt="logo" />
                   <div className="card-body">
                     <h5 className="card-title"><strong>{item.name}</strong></h5>
                     <hr />
@@ -60,10 +64,9 @@ export default class Products extends React.Component {
                       <Button>Add to Cart</Button>
                     </div>
                   </div>
-                </div>
-              </div>
+                </Card>
             )) : <h3>No Products Found</h3>}
-          </div>
+              </CardDeck>
         </Container>
 
       </div>

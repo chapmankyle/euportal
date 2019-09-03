@@ -1,6 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask("__main__")
+
+@app.route("/backend")
+def backend():
+	"""Backend example."""
+	return jsonify({
+		"name": "this is a name"
+	})
+
 
 @app.route("/")
 def index():

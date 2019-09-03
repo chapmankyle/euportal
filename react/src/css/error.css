@@ -1,0 +1,51 @@
+a:hover {
+  text-decoration: none;
+}
+
+.align-center {
+  text-align: center;
+  position: relative;
+}
+
+.eu-container {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  -ms-transform: translateY(-50%, 50%);
+}
+
+.eu-error, .eu-subtitle {
+  color: #676767;
+}
+
+.eu-error {
+  font-weight: 400;
+  font-style: normal;
+}
+
+.eu-text {
+  font-weight: 700;
+  font-style: normal;
+  line-height: 46px;
+}
+
+.eu-subtitle {
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.eu-home {
+  text-align: center;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
+
+.eu-footer a {
+  text-decoration: none;
+  color: gray;
+}

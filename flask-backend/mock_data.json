@@ -1,23 +1,26 @@
 {
-	"products": [
-		{
-			"name": "Bose QuietComfort Headphones",
-			"id": 0,
-			"text": "An amazing pair of wireless bluetooth headphones from the Bose QuietComfort 35 range!",
-			"img": "./images/products/product-1.jpg",
-			"description": ""
-		},
-		{
-			"name": "Product Name 2",
-			"id": 1,
-			"text": "Text for Product 2",
-			"img": "./images/dummy_600x.png"
-		},
-		{
-			"name": "Product Name 3",
-			"id": 2,
-			"text": "Text for Product 3",
-			"img": "./images/dummy_600x.png"
-		}
-	]
+  "products": [
+    {
+      "name": "Bose QuietComfort Headphones",
+      "id": 0,
+      "text": "An amazing pair of wireless bluetooth headphones from the Bose QuietComfort 35 range!",
+      "img": "./images/products/product-1.jpg",
+      "description": "",
+      "price": 250
+    },
+    {
+      "name": "Product Name 2",
+      "id": 1,
+      "text": "Text for Product 2",
+      "img": "./images/dummy_600x.png",
+      "price": 900
+    },
+    {
+      "name": "Product Name 3",
+      "id": 2,
+      "text": "Text for Product 3",
+      "img": "./images/dummy_600x.png",
+      "price": 3500
+    }
+  ]
 }

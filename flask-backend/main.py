@@ -1,6 +1,26 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
+import json
 
 app = Flask("__main__")
+
+
+""" Import mockdata """
+data = ''
+with open('mock_data.json') as f:
+  data = json.load(f)
+
+
+@app.route("/api/products")
+def get_all_products():
+	"""Return list of products."""
+	return jsonify(data)
+
+
+@app.route("/api/products/<int:id>")
+def get_product(id):
+	"""Return single of product with id."""
+	return jsonify(data["products"][id])
+
 
 @app.route("/")
 def index():

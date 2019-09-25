@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Jumbotron, Button } from 'react-bootstrap/';
 import './css/products.css';
+import {ItemCard} from './templates'
 
 export default class Products extends React.Component {
 
@@ -42,26 +43,7 @@ export default class Products extends React.Component {
         <Container>
           <div className="row justify-content-center items">
             {list ? list.map(item => (
-              <div className="col-md-4" onClick={() => (this.props.history.push(`/products/${item.id}`))}>
-                <div className="card shadow trans">
-                  <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
-                  <div className="card-body">
-                    <h5 className="card-title"><strong>{item.name}</strong></h5>
-                    <hr />
-                    <p className="card-text">{item.text}</p>
-                    {admin ? (
-                      // TODO: Make buttons look beautiful
-                      <div>
-                        <Button>Edit</Button> <Button>Delete</Button>
-                        <br /><br />
-                      </div>
-                    ) : null}
-                    <div>
-                      <Button>Add to Cart</Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ItemCard id={item.id} name={item.name} text={item.text} admin={admin} push={this.props.history.push} />
             )) : <h3>No Products Found</h3>}
           </div>
         </Container>

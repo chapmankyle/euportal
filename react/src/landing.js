@@ -20,6 +20,22 @@ class Landing extends React.Component {
     )
   }
 
+  ServiceCard() {
+    return (
+      <>
+        <Card tag="a" style={{ cursor: "pointer" }} onClick={this.showModal}>
+          <Card.Body>
+            <Card.Title>Item</Card.Title>
+            <Card.Text>
+              Short item description.
+          </Card.Text>
+          </Card.Body>
+        </Card>
+      </>
+    )
+  }
+
+
   render() {
     return (
       <>
@@ -37,7 +53,7 @@ class Landing extends React.Component {
           <CardDeck>
             {this.ItemCard()}
             {this.ItemCard()}
-            {this.ItemCard()}
+            {this.ServiceCard()}
           </CardDeck>
           <br />
           <CardDeck>

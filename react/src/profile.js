@@ -5,6 +5,7 @@ import profile from './images/profile.png';
 import './css/App.css';
 
 class Profile extends React.Component {
+
   render() {
     return (
       <>

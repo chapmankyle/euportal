@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { Container, Row, Jumbotron, Button } from 'react-bootstrap/';
 import './css/products.css';
 import { ItemCard } from './templates'
@@ -6,7 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addToCart } from "./actions/cart";
 
-class Products extends React.Component {
+class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +41,7 @@ class Products extends React.Component {
         </Jumbotron>
         <Container>
           <div className="row justify-content-center items">
-            {list ? list.map(item => (
+            {products.length > 0 ? products.map(item => (
               <ItemCard id={item.id} name={item.name} text={item.text} admin={admin} addToCart={this.props.addToCart} />
             )) : <h3>No Products Found</h3>}
           </div>

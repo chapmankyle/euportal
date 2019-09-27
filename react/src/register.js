@@ -47,7 +47,6 @@ export default class Register extends Component {
       this.setState({ newUser: true });
       fetch("/api/register_customer/" + this.state.firstname + ";" + this.state.surname +
        ";" + this.state.email +";" + this.state.password);
-      alert("Welcome " + this.state.firstname);
       // TODO: Log in the user and redirect page
     } catch (e) {
       alert(e.message);
@@ -58,6 +57,7 @@ export default class Register extends Component {
 
   handleConfirmationSubmit = async event => {
     event.preventDefault();
+    // TODO: handle confirmation submit.
 
     this.setState({ isLoading: true });
   }

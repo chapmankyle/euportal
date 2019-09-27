@@ -25,6 +25,7 @@ def register_staff(name, password, email, _type):
     connection.commit()
     cursor.close()
     print("Added new staff user to DB")
+    return session
 
 def register_customer(firstname, surname, password, email):
     cursor = connection.cursor()
@@ -35,3 +36,4 @@ def register_customer(firstname, surname, password, email):
     connection.commit()
     cursor.close()
     print("Added new customer user to DB")
+    return session

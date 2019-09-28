@@ -21,15 +21,11 @@ function ItemCard(props) {
             </div>
           ) : null}
           <div>
-            <Button>Add to Cart</Button>
+            <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
           </div>
         </div>
       </div>
-      ) : null}
-          <div>
-        <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
-      </div>
-    </div>
+    </div >
   );
 }
 
@@ -50,15 +46,11 @@ function ServiceCard(props) {
             </div>
           ) : null}
           <div>
-            <Button>Add to Cart</Button>
+            <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
           </div>
         </div>
       </div>
-      ) : null}
-          <div>
-        <Button>Add to Cart</Button>
-      </div>
-    </div>
+    </div >
   );
 }
 

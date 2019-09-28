@@ -4,6 +4,7 @@ import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
 import {ModalButton} from './templates';
+import EditProfile from './editProfile';
 
 class Profile extends React.Component {
 
@@ -90,7 +91,7 @@ function ProfileTabs(props) {
               <PersonalDetails />
               <BankingDetails />
             </Row>
-            <ModalButton buttonName="Edit Details" title="Edit Details" body={<ProfileTabs />} />
+            <ModalButton buttonName="Edit Details" title="Edit Details" body={<EditProfile />} />
           </Card.Body>
         </Card>
       </Tab>

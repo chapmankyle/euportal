@@ -17,7 +17,7 @@ import {
 import profile from "./images/profile.png";
 import "./css/App.css";
 
-class Profile extends React.Component {
+class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -206,4 +206,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default EditProfile;

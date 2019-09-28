@@ -1,10 +1,10 @@
-import React from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
+import React, { useState } from 'react';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal } from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
 
-function ItemCard(props){
+function ItemCard(props) {
     return (
         <div className="col-md-4" onClick={() => (props.push(`/products/${props.id}`))}>
             <div className="card shadow trans">
@@ -29,7 +29,7 @@ function ItemCard(props){
     );
 }
 
-function ServiceCard(props){
+function ServiceCard(props) {
     return (
         <div className="col-md-4" onClick={() => (props.push(`/products/${props.id}`))}>
             <div className="card shadow trans">
@@ -53,4 +53,31 @@ function ServiceCard(props){
         </div>
     );
 }
-export {ItemCard, ServiceCard};
+
+function ModalButton(props) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+        <>
+            <Button variant="primary" onClick={handleShow}>{props.buttonName}</Button>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{props.title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{props.body}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+            </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+            </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+export { ItemCard, ServiceCard, ModalButton };

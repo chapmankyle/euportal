@@ -30,8 +30,6 @@ function ItemCard(props) {
         <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
       </div>
     </div>
-      </div >
-    </div >
   );
 }
 

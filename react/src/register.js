@@ -8,6 +8,8 @@ export default class Register extends Component {
 
     this.state = {
       isLoading: false,
+      firstname: "",
+      surname: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -18,6 +20,8 @@ export default class Register extends Component {
 
   validateForm() {
     return (
+      this.state.firstname !== "" &&
+      this.state.surname !== "" &&
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
       this.state.password === this.state.confirmPassword
@@ -39,13 +43,21 @@ export default class Register extends Component {
 
     this.setState({ isLoading: true });
 
-    this.setState({ newUser: "test" });
+    try {
+      this.setState({ newUser: true });
+      fetch("/api/register_customer/" + this.state.firstname + ";" + this.state.surname +
+       ";" + this.state.email +";" + this.state.password);
+      // TODO: Log in the user and redirect page
+    } catch (e) {
+      alert(e.message);
+    }
 
     this.setState({ isLoading: false });
   }
 
   handleConfirmationSubmit = async event => {
     event.preventDefault();
+    // TODO: handle confirmation submit.
 
     this.setState({ isLoading: true });
   }
@@ -78,6 +90,24 @@ export default class Register extends Component {
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <FormGroup controlId="firstname" bsSize="large">
+          <FormLabel>First Name</FormLabel>
+          <FormControl
+            autoFocus
+            type="firstname"
+            value={this.state.firstname}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
+        <FormGroup controlId="surname" bsSize="large">
+          <FormLabel>Last Name</FormLabel>
+          <FormControl
+            autoFocus
+            type="surname"
+            value={this.state.surname}
+            onChange={this.handleChange}
+          />
+        </FormGroup>
         <FormGroup controlId="email" bsSize="large">
           <FormLabel>Email</FormLabel>
           <FormControl

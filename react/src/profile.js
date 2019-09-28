@@ -1,17 +1,9 @@
-import React from "react";
-import {
-  Tabs,
-  Tab,
-  Container,
-  Row,
-  Jumbotron,
-  Card,
-  Col,
-  Button
-} from "react-bootstrap/";
-import Img from "react-image";
-import profile from "./images/profile.png";
-import "./css/App.css";
+import React from 'react';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
+import Img from 'react-image';
+import profile from './images/profile.png';
+import './css/App.css';
+import {ModalButton} from './templates';
 
 class Profile extends React.Component {
 
@@ -98,9 +90,7 @@ function ProfileTabs(props) {
               <PersonalDetails />
               <BankingDetails />
             </Row>
-            <Button onClick={() => props.props.history.push("/edit-profile")}>
-              Edit Details
-            </Button>
+            <ModalButton buttonName="Edit Details" title="Edit Details" body={<ProfileTabs />} />
           </Card.Body>
         </Card>
       </Tab>

@@ -12,13 +12,29 @@ export default class SingleProduct extends React.Component {
     super(props);
     this.state = {
       image: null,
-      show: false
+      show: false,
+      product: {
+        name: null,
+        id: null,
+        text: null,
+        description: null,
+      }
     }
   }
 
+  componentDidMount() {
+    fetch(`/api/products/${this.props.match.params.id}`)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        product: res
+      });
+    });
+  }
+
+
   render() {
-    // Get Product ID
-    // const { id } = this.props.match.params;
+    const product = this.state.product;
 
     const handleShow = (image) => setShow(image, true);
     const handleClose = () => setShow(null, false);
@@ -35,7 +51,7 @@ export default class SingleProduct extends React.Component {
         <Jumbotron>
           <Container>
               <Row>
-                <h1>Bose QuietComfort 35 II Wireless Bluetooth Headphones</h1>
+                <h1>{product.name}</h1>
               </Row>
           </Container>
         </Jumbotron>
@@ -53,7 +69,7 @@ export default class SingleProduct extends React.Component {
                     <Col onClick={() => handleShow(image3)}>
                       <Image src={image3} fluid/>
                     </Col>
-                    <Col  onClick={() => handleShow(image4)}>
+                    <Col onClick={() => handleShow(image4)}>
                       <Image src={image4} fluid />
                     </Col>
                 </Row>

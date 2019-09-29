@@ -3,18 +3,20 @@ import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-b
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
+import {ModalButton} from './templates';
 
 class Profile extends React.Component {
+
   render() {
     return (
       <>
         <ProfileBanner />
-        <Container class="main-container">
+        <Container className="main-container">
           <Row className="justify-content-md-center">
             <Col xs lg="20">
-              <div class='profile'>
+              <div className="profile">
                 <br></br>
-                <ProfileTabs />
+                <ProfileTabs props={this.props} />
               </div>
             </Col>
           </Row>
@@ -27,7 +29,7 @@ class Profile extends React.Component {
 function NoTransactions() {
   return (
     <Card>
-      <Jumbotron class="noTransactions">
+      <Jumbotron className="noTransactions">
         <h1>You have no past transactions</h1>
         <p> When you buy products they will get listed here for you to view!</p>
       </Jumbotron>
@@ -41,7 +43,7 @@ function ProfileBanner() {
       <Container>
         <Row>
           <Col md="auto">
-            <Img class="profileImg" src={profile} /> <br />
+            <Img className="profileImg" src={profile} /> <br />
           </Col>
           <Col md="auto">
             <h1>Jane Doe</h1>
@@ -57,8 +59,11 @@ function PersonalDetails() {
     <Col>
       <h2>Personal Details</h2>
       Name: Jane Doe <br />
-      Email: janedoe@gmail.com<br />
-      Phone: 0256457788<br /><br />
+      Email: janedoe@gmail.com
+      <br />
+      Phone: 0256457788
+      <br />
+      <br />
     </Col>
   );
 }
@@ -68,12 +73,14 @@ function BankingDetails() {
     <Col>
       <h2>Banking Details</h2>
       Account Number: 155874599963 <br />
-      Bank: Capitec<br /><br />
+      Bank: Capitec
+      <br />
+      <br />
     </Col>
   );
 }
 
-function ProfileTabs() {
+function ProfileTabs(props) {
   return (
     <Tabs defaultActiveKey="details" id="uncontrolled-tab-example">
       <Tab eventKey="details" title="My details">
@@ -83,7 +90,7 @@ function ProfileTabs() {
               <PersonalDetails />
               <BankingDetails />
             </Row>
-            <Button>Edit Details</Button>
+            <ModalButton buttonName="Edit Details" title="Edit Details" body={<ProfileTabs />} />
           </Card.Body>
         </Card>
       </Tab>

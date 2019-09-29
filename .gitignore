@@ -1,3 +1,5 @@
+# Gitignore
+
 ### React ###
 flask-backend/static/react/
 flask-backend/templates/index.html

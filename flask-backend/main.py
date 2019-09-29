@@ -5,20 +5,15 @@ import db
 app = Flask("__main__")
 
 
-""" Import mockdata """
-data = ''
-with open('mock_data.json') as f:
-  data = json.load(f)
-
 @app.route("/api/products")
 def get_all_products():
 	"""Return list of products."""
-	return jsonify(data)
+	return jsonify(db.get_products())
 
 @app.route("/api/products/<int:id>")
 def get_product(id):
 	"""Return single of product with id."""
-	return jsonify(data["products"][id])
+	return jsonify(db.get_product(id))
 
 @app.route("/")
 def index():
@@ -51,6 +46,20 @@ def update_customer(firstname, surname, password, email, session):
 	""" Registers a new staff memeber, returns the session ID """
 	print("getting customer data from db")
 	return jsonify(db.update_customer(firstname, surname, password, email, session))
+
+# TODO: Need to test
+@app.route("/api/delete_customer/<session>")
+def delete_customer(session):
+	""" Deletes a customers account, returns Boolean """
+	print("Deleting customer data from db")
+	return jsonify(db.delete_customer(session))
+
+
+@app.route("/api/delete_product/<product_id>")
+def delete_product(product_id):
+	""" Deletes a product, returns Boolean """
+	print("Deleting product data from db")
+	return jsonify(db.delete_product(product_id))
 
 if __name__ == "__main__":
 	"""Run server in debug mode."""

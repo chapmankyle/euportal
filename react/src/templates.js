@@ -21,7 +21,10 @@ function ItemCard(props) {
             </div>
           ) : null}
           <div>
-            <Button onClick={() => props.addToCart(props.item)}>Add to Cart</Button>
+            <Button onClick={() => props.push(`/products/${props.id}`)}>View</Button>
+            <br />
+            <br />
+            <Button onClick={() => props.addToCart(props.id, props.name, props.price)}>Add to Cart</Button>
           </div>
         </div>
       </div>

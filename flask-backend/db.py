@@ -49,11 +49,14 @@ def register_customer(firstname, surname, password, email):
     return session
 
 def get_customer(session):
-    query = ("SELECT * FROM customers WHERE session_id like \"%s\"" %session )
+    query = ("SELECT * FROM customers WHERE session_id like \"%s\"" % session)
     query_info = session
     data = execute_query(query, query_info, True)
     print("Getting Customer")
-    return data
+    if data:
+        return data[0]
+    else:
+        return False
 
 def update_customer(firstname, surname, password, email, session):
     query = 'UPDATE customers SET firstname=%s, surname=%s, password=%s, email=%s WHERE session_id like %s' 
@@ -63,3 +66,39 @@ def update_customer(firstname, surname, password, email, session):
     return get_customer(session)
 
 
+def delete_customer(session):
+    query = (
+        "DELETE FROM customers WHERE session_id=\"%s\"" % session)
+    query_info = (session)
+    execute_query(query, query_info)
+    print("Deleted customer")
+    return True
+
+def delete_product(product_id):
+    query = (
+        "DELETE FROM products WHERE product_id=\"%s\"" % product_id)
+    query_info = (product_id)
+    execute_query(query, query_info)
+    print("Deleted product with id %s" % product_id)
+    return True
+
+
+def get_products():
+    query = ("SELECT * FROM products")
+    query_info = ()
+    data = execute_query(query, query_info, True)
+    print("Getting Products")
+    if data:
+        return data
+    else:
+        return False
+
+def get_product(id):
+    query = ("SELECT * FROM products WHERE product_id=\"%d\"" % id)
+    query_info = ()
+    data = execute_query(query, query_info, True)
+    print("Getting Single Product")
+    if data:
+        return data[0]
+    else:
+        return False

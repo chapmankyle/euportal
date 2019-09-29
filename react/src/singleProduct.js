@@ -27,7 +27,13 @@ export default class SingleProduct extends React.Component {
     .then(res => res.json())
     .then(res => {
       this.setState({
-        product: res
+        product: {
+          id: res[0],
+          name: res[1],
+          description: res[2],
+          price: res[3],
+          text: res[2]
+        }
       });
     });
   }
@@ -51,7 +57,7 @@ export default class SingleProduct extends React.Component {
         <Jumbotron>
           <Container>
               <Row>
-                <h1>{product.name}</h1>
+                <h1 style={{textAlign: 'center'}}>{product.name}</h1>
               </Row>
           </Container>
         </Jumbotron>
@@ -79,34 +85,7 @@ export default class SingleProduct extends React.Component {
             <Col lg={5}>
               <br/>
               <h2 className='text-center'>Description</h2>
-              <p>
-                <ul>
-                  <li>
-                  Three levels of world-class noise cancellation for better listening experience in any    environment
-                  </li>
-                  <li>
-                  Alexa-enabled for voice access to music, information, and more
-                  </li>
-                  <li>
-                    Noise-rejecting dual-microphone system for clear sound and voice pick-up
-                  </li>
-                  <li>
-                    Balanced audio performance at any volume
-                  </li>
-                  <li>
-                    Hassle-free Bluetooth pairing, personalized settings, access to future updates, and more through the Bose Connect app
-                  </li>
-                  <li>
-                    Bose AR enabled* — an innovative, audio-only version of augmented reality
-                  </li>
-                  <li>
-                    Unlock Bose AR* via a firmware update through the Bose Connect app
-                  </li>
-                  <li>
-                    Bose AR availability and functionality varies. Bose AR enhanced apps are currently available for iPhone and iPad users only. Apps for Android devices are in development.
-                  </li>
-                </ul>
-              </p>
+              <p>{product.description}</p>
             </Col>
           </Row>
 

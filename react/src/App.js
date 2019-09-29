@@ -42,12 +42,12 @@ function Layout() {
             <Navbar.Collapse>
               <Nav className="mr-auto push-right">
                 <NavLink className="link mr-4" to="/profile">
-                  <i class="fas fa-user-circle"></i>&nbsp; Profile
+                  <i className="fas fa-user-circle"></i>&nbsp; Profile
                 </NavLink>
               </Nav>
               <Nav className="mr-auto push-right">
                 <NavLink className="link mr-4" to="/products">
-                  <i class="fas fa-box-open"></i>&nbsp; Products
+                  <i className="fas fa-box-open"></i>&nbsp; Products
                 </NavLink>
                 <NavLink className="link mr-4" to="/customize">
                   <i className="fas fa-wrench"></i>&nbsp; Customize
@@ -59,7 +59,7 @@ function Layout() {
               </Form>
               <Nav className="push-right">
                 <NavLink className="link ml-4" to="/checkout">
-                  <i class="fas fa-shopping-cart"></i>&nbsp; Cart
+                  <i className="fas fa-shopping-cart"></i>&nbsp; Cart
                 </NavLink>
               </Nav>
             </Navbar.Collapse>

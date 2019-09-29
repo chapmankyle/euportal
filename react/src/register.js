@@ -13,7 +13,7 @@ export default class Register extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      confirmationCode: "",
+      confirmationCode: "0000",
       newUser: null
     };
   }

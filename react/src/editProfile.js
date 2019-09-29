@@ -21,9 +21,11 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Jane",
-      surname: "Doe",
-      email: "jane.doe@gmail.com",
+      name: props.firstname,
+      surname: props.surname,
+      email: props.email,
+      password: props.password,
+      session: props.session,
       cardDetails: [
         {
           name: "Capitec Bank",
@@ -53,8 +55,15 @@ class EditProfile extends React.Component {
     };
 
     const updateProfile = e => {
-      e.preventDefault();
       console.log(this.state);
+
+      try {
+        fetch("/api/update_customer/" + this.state.name + ";" + this.state.surname + ";" + 
+        this.state.password + ";" + this.state.email + ";" + this.state.session ).then(() => window.location.reload())
+      } catch (e) {
+        alert(e.message);
+      }
+      
     };
 
     const updateBank = e => {

@@ -14,6 +14,7 @@ import Products from "./products";
 import Profile from "./profile";
 import Register from "./register";
 import SingleProduct from "./singleProduct";
+import { withCookies } from 'react-cookie';
 
 import "./css/App.css"
 
@@ -105,4 +106,4 @@ function Foot() {
   );
 }
 
-export default App;
+export default withCookies(App);

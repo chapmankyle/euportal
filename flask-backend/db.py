@@ -22,13 +22,22 @@ def generate_session_id(name):
 
 def execute_query(query, query_info, return_data=False):
     data = None
-    cursor = connection.cursor()
+    cursor = connection.cursor(buffered=True)
     cursor.execute(query, query_info)
     if return_data:
         data = cursor.fetchall()  
     connection.commit()
     cursor.close()
     return data
+
+def login_user(email, password):
+    query = (
+        "SELECT session_id FROM customers WHERE email=%s AND password=%s")
+    query_info = (email, password)
+    session = execute_query(query, query_info)
+    if (session == []):
+        return ""
+    return str(session[0][0])
 
 def register_staff(name, password, email, _type):
     session = generate_session_id(name)

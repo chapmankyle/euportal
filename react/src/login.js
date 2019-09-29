@@ -25,6 +25,12 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    fetch("/api/login/" + this.state.email +";" + this.state.password).then(function(response) {
+      return response.text().then(function(text) {
+        // TODO: set session = text
+      });
+    });
   }
 
   render() {

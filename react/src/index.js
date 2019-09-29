@@ -6,6 +6,7 @@ import "./css/index.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import allReducer from "./reducers/index";
+import { CookiesProvider } from "react-cookie";
 
 const store = createStore(
   allReducer,
@@ -13,9 +14,12 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <CookiesProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </CookiesProvider>,
+  
   document.getElementById("root")
 );
 

@@ -40,6 +40,11 @@ def register_staff(name, password, email, _type):
 	""" Registers a new staff memeber, returns the session ID """
 	return db.register_staff(name, password, email, _type)
 
+@app.route("/api/login/<email>;<password>")
+def login_user(email, password):
+	""" Logs a user in by returning the session ID """
+	return db.login_user(email, password)
+
 @app.route("/api/get_customer/<session>")
 def get_customer(session):
 	""" Registers a new staff memeber, returns the session ID """

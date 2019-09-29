@@ -75,7 +75,7 @@ function CustomizeTabs() {
   return (
     <Tabs defaultActiveKey="lookandfeel" id="uncontrolled-tab-example">
       <Tab eventKey="lookandfeel" title="Look And Feel">
-        <Card>
+        <Card className="mt-0">
           <Card.Body>
             <Row>
               <LookAndFeel />
@@ -85,7 +85,7 @@ function CustomizeTabs() {
         </Card>
       </Tab>
       <Tab class="categories" eventKey="categories" title="Categories">
-        <Card>
+        <Card className="mt-0">
           <Card.Body>
             <Row>
 

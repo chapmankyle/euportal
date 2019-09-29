@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal } from 'react-bootstrap/';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal, FormControl , InputGroup} from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
@@ -13,16 +13,16 @@ function ItemCard(props) {
           <h5 className="card-title"><strong>{props.name}</strong></h5>
           <hr />
           <p className="card-text">{props.text}</p>
+          <>
           {props.admin ? (
             // TODO: Make buttons look beautiful
-            <div>
+              <>
               <Button>Edit</Button> <Button>Delete</Button>
-              <br /><br />
-            </div>
+              </>
           ) : null}
-          <div>
-            <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
-          </div>
+
+            <Button className="float-right" onClick={() => props.addCart(props.item)}>Add to Cart</Button>
+          </>
         </div>
       </div>
     </div >
@@ -68,16 +68,10 @@ function ModalButton(props) {
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{props.body}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-            </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-            </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
 }
+
+
 export { ItemCard, ServiceCard, ModalButton };

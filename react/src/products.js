@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Jumbotron, Button } from 'react-bootstrap/';
 import './css/products.css';
-import { ItemCard } from './templates'
+import { ItemCard, ModalButton } from './templates'
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addToCart } from "./actions/cart";
+import AddProduct from './addProduct';
 
 class Products extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Products extends Component {
             <Row>
               <h1>Products Page</h1>
             </Row>
+            <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session}/>} />
           </Container>
         </Jumbotron>
         <Container>

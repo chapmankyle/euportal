@@ -6,7 +6,7 @@ import './css/App.css';
 
 function ItemCard(props) {
   return (
-    <div className="col-md-4" onClick={() => (props.push(`/products/${props.id}`))}>
+    <div className="col-md-4">
       <div className="card shadow trans">
         <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
         <div className="card-body">
@@ -21,7 +21,7 @@ function ItemCard(props) {
             </div>
           ) : null}
           <div>
-            <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
+            <Button onClick={() => props.addToCart(props.item)}>Add to Cart</Button>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@ function ItemCard(props) {
 
 function ServiceCard(props) {
   return (
-    <div className="col-md-4" onClick={() => (props.push(`/products/${props.id}`))}>
+    <div className="col-md-4">
       <div className="card shadow trans">
         <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
         <div className="card-body">
@@ -46,7 +46,7 @@ function ServiceCard(props) {
             </div>
           ) : null}
           <div>
-            <Button onClick={() => props.addCart(props.item)}>Add to Cart</Button>
+            <Button onClick={() => props.addToCart(props.item)}>Add to Cart</Button>
           </div>
         </div>
       </div>

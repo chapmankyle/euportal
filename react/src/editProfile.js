@@ -46,6 +46,7 @@ class EditProfile extends React.Component {
     ];
 
     const updateState = e => {
+      console.log("Update")
       this.setState({
         [e.target.id]: e.target.value
       });
@@ -64,11 +65,6 @@ class EditProfile extends React.Component {
     const updateProfilePicture = () => {};
     return (
       <div>
-        <Jumbotron>
-          <Container>
-            <h1>Edit Profile</h1>
-          </Container>
-        </Jumbotron>
         <Container>
           <br />
           <Row>

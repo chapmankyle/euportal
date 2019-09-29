@@ -3,6 +3,9 @@ import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-b
 import Img from 'react-image';
 import logo from './images/react.png'
 import './css/App.css';
+import EditCustomize from "./editCustomize"
+import {ModalButton} from './templates';
+
 
 class Customize extends React.Component {
   render() {
@@ -43,7 +46,7 @@ function LookAndFeel() {
       <h6>Primary Color</h6>Dark Grey <br />
       <h6>Secondary Color</h6>Light Blue/Grey<br />
       <h6>Accent Color</h6>Light Blue <br /><br />
-      <Button>Edit Look And Feel</Button>
+      <ModalButton buttonName="Edit Look and Feel" title="Edit Look and Feel" body={<EditCustomize />} />
     </Col>
   );
 }
@@ -53,7 +56,6 @@ function Logo() {
     <Col>
       <h2>Your Logo</h2>
       <Img class="logoImg" src={logo} /><br /><br />
-      <Button>Change Logo</Button>
     </Col>
   );
 }

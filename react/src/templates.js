@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal } from 'react-bootstrap/';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal, FormControl , InputGroup} from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
@@ -72,12 +72,11 @@ function ModalButton(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
             </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-            </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
+
+
 export { ItemCard, ServiceCard, ModalButton };

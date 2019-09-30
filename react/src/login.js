@@ -30,7 +30,11 @@ export default class Login extends Component {
     fetch("/api/login/" + this.state.email +";" + this.state.password).then(function(response) {
       return response.text().then(function(text) {
         // TODO: set session = text
-        cookies.set("session", text, { path: '/' });
+        if (text === ""){
+          alert("Email/Password incorrect, please try again")
+        } else {
+          cookies.set("session", text, { path: '/' });
+        }
       });
     });
   }

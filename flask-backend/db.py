@@ -38,10 +38,10 @@ def login_user(email, password):
     query = (
         "SELECT session_id FROM customers WHERE email=%s AND password=%s")
     query_info = (email, password)
-    session = execute_query(query, query_info)
+    session = execute_query(query, query_info, True)
     if (session == []):
         return ""
-    return str(session[0][0])
+    return session[0][0]
 
 def register_staff(name, password, email, _type):
     """Registers a staff member with all relevant details."""

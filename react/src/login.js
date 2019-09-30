@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import './css/App.css';
 import "./css/login.css";
+import cookies from "./index";
 
 export default class Login extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class Login extends Component {
     fetch("/api/login/" + this.state.email +";" + this.state.password).then(function(response) {
       return response.text().then(function(text) {
         // TODO: set session = text
+        cookies.set("session", text, { path: '/' });
       });
     });
   }

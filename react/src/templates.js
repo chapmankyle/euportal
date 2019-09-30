@@ -30,13 +30,12 @@ function ServiceCard(props) {
             <Card.Title ><strong>{props.name}</strong></Card.Title>
             <Card.Text className="card-text">{props.text}</Card.Text>
             <>
+            {/* TODO: Move to different file as the onclick handle break it */}
             {props.admin ? (
                 <>
                 <Button>Edit</Button> <Button>Delete</Button>
                 </>
             ) : null}
-
-              <Button className="float-right" onClick={() => props.addCart(props.item)}>Add to cart</Button>
             </>
           </Card.Body>
         </Card>

@@ -6,7 +6,6 @@ import "./css/index.css";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from 'redux';
 import allReducer from "./reducers/index";
-import Cookies from "universal-cookie"
 
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -21,7 +20,6 @@ const persistConfig = {
   storage
 };
 
-const cookies = new Cookies();
 
 const persistedReducer = persistReducer(persistConfig, allReducer);
 
@@ -47,6 +45,5 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
 
-export default cookies;
+serviceWorker.unregister();

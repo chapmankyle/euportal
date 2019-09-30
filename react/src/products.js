@@ -16,12 +16,13 @@ class Products extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    // TODO: add to store instead
     fetch("/api/products")
       .then(res => res.json())
       .then(res => {
         this.setState({
-          products: res.products
+          products: res
         });
       });
   }
@@ -29,7 +30,7 @@ class Products extends Component {
   render() {
     const products = this.state.products;
     // Need to check if user is admin -- If admin then show additional options
-    const admin = window.location.pathname === "/products";
+    const admin = window.location.pathname !== "/products";
 
     return (
       <div>
@@ -47,7 +48,9 @@ class Products extends Component {
         <Container>
           <CardDeck>
             {products.length > 0 ? products.map(item => (
-              <ItemCard id={item.id} name={item.name} text={item.text} admin={admin} addToCart={this.props.addToCart} item={item} />
+              <ItemCard id={item[0]} name={item[1]} text={item[2]} price={item[3]}
+                admin={admin} addToCart={this.props.addToCart} push={this.props.history.push}
+              />
             )) : <h3>No Products Found</h3>}
           </CardDeck>
         </Container>

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal, FormControl , InputGroup, ButtonGroup} from 'react-bootstrap/';
-import Img from 'react-image';
-import profile from './images/profile.png';
+import { Card, Button, Modal, ButtonGroup} from 'react-bootstrap/';
 import './css/App.css';
 
 function ItemCard(props) {

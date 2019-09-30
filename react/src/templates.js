@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal, FormControl , InputGroup, ButtonGroup} from 'react-bootstrap/';
-import Img from 'react-image';
-import profile from './images/profile.png';
+import { Card, Button, Modal, ButtonGroup} from 'react-bootstrap/';
 import './css/App.css';
 
 function ItemCard(props) {
@@ -32,13 +30,12 @@ function ServiceCard(props) {
             <Card.Title ><strong>{props.name}</strong></Card.Title>
             <Card.Text className="card-text">{props.text}</Card.Text>
             <>
+            {/* TODO: Move to different file as the onclick handle break it */}
             {props.admin ? (
                 <>
                 <Button>Edit</Button> <Button>Delete</Button>
                 </>
             ) : null}
-
-              <Button className="float-right" onClick={() => props.addCart(props.item)}>Add to cart</Button>
             </>
           </Card.Body>
         </Card>

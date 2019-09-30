@@ -40,7 +40,12 @@ def login_user(email, password):
     query_info = (email, password)
     session = execute_query(query, query_info, True)
     if (session == []):
-        return ""
+        query = (
+            "SELECT session_id FROM staff WHERE email=%s AND password=%s")
+        query_info = (email, password)
+        session = execute_query(query, query_info, True)
+        if (session == []):
+            return ""
     return session[0][0]
 
 def register_staff(name, password, email, _type):

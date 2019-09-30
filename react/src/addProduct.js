@@ -8,11 +8,13 @@ import {
   Card,
   Col,
   Button,
-  InputGroup,
+  FormGroup,
   Image,
   FormControl,
+  FormLabel,
   DropdownButton,
-  Dropdown
+  Dropdown,
+  ButtonGroup
 } from "react-bootstrap/";
 import profile from "./images/profile.png";
 import "./css/App.css";
@@ -21,39 +23,48 @@ class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.firstname,
-      surname: props.surname,
-      email: props.email,
-      password: props.password,
-      session: props.session,
-      cardDetails: [
-        {
-          name: "Capitec Bank",
-          accountNumber: 155874599963,
-          code: 47000
-        }
-      ]
+      isLoading: false,
+      title: "",
+      description: "",
+      price: "",
+      quantity: "",
+      category: "",
+      newProduct: null
     };
   }
+
+      validateForm() {
+        return (
+          this.state.title !== "" &&
+          this.state.price !== "" &&
+          this.state.quantity !== ""
+        );
+      }
+
+      handleChange = event => {
+        this.setState({
+          [event.target.id]: event.target.value
+        });
+      }
+
+      handleSubmit = async event => {
+        event.preventDefault();
+
+        this.setState({ isLoading: true });
+
+        try {
+          this.setState({ newProduct: true });
+          fetch("/api/add_product/" + this.state.title + ";" + this.state.description +
+           ";" + this.state.price +";" + this.state.quantity);
+          // TODO: Log in the user and redirect page
+        } catch (e) {
+          alert(e.message);
+        }
+
+        this.setState({ isLoading: false });
+      }
+
   render() {
-    const banks = [
-      { name: "ABSA Bank", code: "632005" },
-      { name: "Bank of Athens", code: "410506" },
-      { name: "Bidvest Bank", code: "462005" },
-      { name: "Capitec Bank", code: "470010" },
-      { name: "FNB", code: "250655" },
-      { name: "Investec Private Bank", code: "580105" },
-      { name: "Nedbank", code: "198765" },
-      { name: "SA Post Bank (Post Office)", code: "460005" }
-    ];
-
-    const updateState = e => {
-      console.log("Update")
-      this.setState({
-        [e.target.id]: e.target.value
-      });
-    };
-
     const updateProfile = e => {
       console.log(this.state);
       try {
@@ -64,76 +75,67 @@ class EditProfile extends React.Component {
       }
     };
 
-    const updateBank = e => {
-      e.preventDefault();
-      console.log(this.state);
-    };
-
     const addPhoto = () => {};
     return (
-      <div>
-        <Container>
-                  <Card>
-                    <Card.Body>
-                        <Image src={profile} />
-                        <br />
-                        <InputGroup size="md" className="mb-3">
-                          <Button variant="info" onClick={addPhoto}>
-                            Add Picture
-                          </Button>
-                        </InputGroup>
-                        <InputGroup size="md" className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-lg">
-                              Title
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <FormControl
-                            id="name"
-                            aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm"
-                            value={this.state.name}
-                            onChange={updateState}
-                          />
-                        </InputGroup>
-                        <InputGroup size="md" className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>Desc.</InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <FormControl
-                            as="textarea"
-                            id="Description"
-                            aria-label="Small"
-                            value={this.state.surname}
-                            onChange={updateState}
-                          />
-                        </InputGroup>
-                        <InputGroup size="md" className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-lg">
-                              Price
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <FormControl
-                            id="email"
-                            aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm"
-                            value={this.state.email}
-                            onChange={updateState}
-                          />
-                        </InputGroup>
-                    </Card.Body>
-                  </Card>
+      <Container>
+        <Card className="mt-0">
+          <Card.Body>
+            <form onSubmit={this.handleSubmit}>
+              <Image src={profile} />
               <br />
-              <Button onClick={updateProfile}>Save Details</Button>
-              <Button
-                className="float-right"
-                onClick={() => this.props.history.goBack()}
-                variant="danger">
-                Discard Changes
-              </Button>
-        </Container>
-      </div>
+              <FormGroup size="md" className="mb-3">
+                <Button variant="info" onClick={addPhoto}>
+                  Add Picture
+                </Button>
+              </FormGroup>
+                <FormGroup controlId="title" bsSize="large">
+                  <FormLabel>Title</FormLabel>
+                    <FormControl
+                      id="title"
+                      value={this.state.title}
+                      onChange={this.handleChange}
+                      />
+                </FormGroup>
+              <FormGroup controlId="description" bsSize="large">
+                <FormLabel>Discription</FormLabel>
+                <FormControl
+                  as="textarea"
+                  value={this.state.description}
+                  onChange={this.handleChange}
+                  />
+              </FormGroup>
+              <FormGroup controlId="price" bsSize="large">
+                <FormLabel>Price</FormLabel>
+                <FormControl
+                  id="price"
+                  value={this.state.price}
+                  onChange={this.handleChange}
+                  />
+              </FormGroup>
+              <FormGroup controlId="quantitiy" bsSize="large">
+                <FormLabel>Quantitiy</FormLabel>
+                <FormControl
+                  id="quantity"
+                  value={this.state.quantity}
+                  onChange={this.handleChange}
+                  />
+              </FormGroup>
+            </form>
+          </Card.Body>
+        </Card>
+        <br />
+          <Button
+            disabled={!this.validateForm()}
+            type="submit">
+            Add
+            </Button>
+        <Button
+          className="float-right"
+          onClick={() => this.props.history.goBack()}
+          variant="danger">
+          Cancel
+        </Button>
+      </Container>
     );
   }
 }

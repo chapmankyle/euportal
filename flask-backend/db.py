@@ -85,12 +85,13 @@ def register_customer(firstname, surname, password, email):
     return session
 
 
-def register_product(name, description, price, stock):
+def add_product(name, description, price, stock):
     """Registers a new product and places it in the database."""
-    query = ("INSERT INTO products (name, description, price, stock) VALUES (%s, %s, %s, %s)")
-    query_info = (name, description, price, stock)
+    query = ("INSERT INTO products (name, description, price, stock, discontinued) VALUES (%s, %s, %s, %s, %s)")
+    query_info = (name, description, price, stock, "No")
     execute_query(query, query_info)
     print("Added new product to DB")
+    return "Lekker"
 
 
 def get_customer(session):
@@ -113,6 +114,13 @@ def get_product(name):
     print("Retrieved product")
     return data
 
+def get_all_products():
+    """Returns a list of all the products by name."""
+    query = ("SELECT * FROM products WHERE name=%s")
+    query_info = (name)
+    data = execute_query(query, query_info, True)
+    print("Retrieved product")
+    return data
 
 def update_customer(firstname, surname, password, email, session):
     """Updates the details of a specified customer using their session ID."""

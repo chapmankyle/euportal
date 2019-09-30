@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Jumbotron, Button } from 'react-bootstrap/';
+import { Container, Row, Jumbotron, Button, CardDeck } from 'react-bootstrap/';
 import './css/products.css';
 import { ItemCard, ModalButton } from './templates'
 
@@ -34,19 +34,22 @@ class Products extends Component {
     return (
       <div>
         <Jumbotron>
-          <Container>
-            <Row>
-              <h1>Products Page</h1>
-            </Row>
-            <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session}/>} />
-          </Container>
+        <Container>
+                    <h1>Shop Banner!</h1>
+                    <p>
+                      This is my store, thank you for shopping with us!
+                    <br />
+                      You can contact me on: 123-456-7890
+                  </p>
+                  <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session}/>} />
+                  </Container>
         </Jumbotron>
         <Container>
-          <div className="row justify-content-center items">
+          <CardDeck>
             {products.length > 0 ? products.map(item => (
               <ItemCard id={item.id} name={item.name} text={item.text} admin={admin} addToCart={this.props.addToCart} />
             )) : <h3>No Products Found</h3>}
-          </div>
+          </CardDeck>
         </Container>
       </div>
     );

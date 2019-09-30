@@ -24,10 +24,10 @@ class EditProfile extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      title: "",
+      name: "",
       description: "",
       price: "",
-      quantity: "",
+      stock: "",
       category: "",
       newProduct: null
     };
@@ -35,9 +35,9 @@ class EditProfile extends React.Component {
 
   validateForm() {
     return (
-      this.state.title !== "" &&
+      this.state.name !== "" &&
       this.state.price !== "" &&
-      this.state.quantity !== ""
+      this.state.stock !== ""
     );
   }
 
@@ -54,9 +54,9 @@ class EditProfile extends React.Component {
 
     try {
       this.setState({ newProduct: true });
-      fetch("/api/add_product/" + this.state.title + ";" + this.state.description +
-      ";" + this.state.price +";" + this.state.quantity);
-      // TODO: Log in the user and redirect page
+      fetch("/api/add_product/" + this.state.name + ";" + this.state.description +
+      ";" + this.state.price +";" + this.state.stock);
+      // TODO: refresh products page
     } catch (e) {
       alert(e.message);
     }
@@ -65,22 +65,14 @@ class EditProfile extends React.Component {
   }
 
   render() {
-    const updateProfile = e => {
-      console.log(this.state);
-      try {
-        fetch("/api/update_customer/" + this.state.name + ";" + this.state.surname + ";" +
-        this.state.password + ";" + this.state.email + ";" + this.state.session ).then(() => window.location.reload())
-      } catch (e) {
-        alert(e.message);
-      }
-    };
 
     const addPhoto = () => {};
     return (
       <Container>
+        <form onSubmit={this.handleSubmit}>
         <Card className="mt-0">
           <Card.Body>
-            <form onSubmit={this.handleSubmit}>
+
               <Image src={profile} />
               <br />
               <FormGroup size="md" className="mb-3">
@@ -88,11 +80,11 @@ class EditProfile extends React.Component {
                   Add Picture
                 </Button>
               </FormGroup>
-              <FormGroup controlId="title" bsSize="large">
+              <FormGroup controlId="name" bsSize="large">
                 <FormLabel>Title</FormLabel>
                 <FormControl
-                  id="title"
-                  value={this.state.title}
+                  id="name"
+                  value={this.state.name}
                   onChange={this.handleChange}
                   />
               </FormGroup>
@@ -100,6 +92,7 @@ class EditProfile extends React.Component {
                 <FormLabel>Discription</FormLabel>
                 <FormControl
                   as="textarea"
+                  id="description"
                   value={this.state.description}
                   onChange={this.handleChange}
                   />
@@ -112,15 +105,15 @@ class EditProfile extends React.Component {
                   onChange={this.handleChange}
                   />
               </FormGroup>
-              <FormGroup controlId="quantitiy" bsSize="large">
+              <FormGroup controlId="stock" bsSize="large">
                 <FormLabel>Quantitiy</FormLabel>
                 <FormControl
-                  id="quantity"
-                  value={this.state.quantity}
+                  id="stock"
+                  value={this.state.stock}
                   onChange={this.handleChange}
                   />
               </FormGroup>
-            </form>
+
           </Card.Body>
         </Card>
         <br />
@@ -135,7 +128,9 @@ class EditProfile extends React.Component {
           variant="danger">
           Cancel
         </Button>
+        </form>
       </Container>
+
     );
   }
 }

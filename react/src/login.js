@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import './css/App.css';
 import "./css/login.css";
-import cookies from "./index";
+import cookies from "./cookiestore";
 
 export default class Login extends Component {
   constructor(props) {
@@ -34,6 +34,7 @@ export default class Login extends Component {
           alert("Email/Password incorrect, please try again");
         } else {
           cookies.set("session", text, { path: '/' });
+          alert(cookies.get("session"));
         }
       });
     });

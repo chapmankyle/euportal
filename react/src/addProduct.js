@@ -33,36 +33,36 @@ class EditProfile extends React.Component {
     };
   }
 
-      validateForm() {
-        return (
-          this.state.title !== "" &&
-          this.state.price !== "" &&
-          this.state.quantity !== ""
-        );
-      }
+  validateForm() {
+    return (
+      this.state.title !== "" &&
+      this.state.price !== "" &&
+      this.state.quantity !== ""
+    );
+  }
 
-      handleChange = event => {
-        this.setState({
-          [event.target.id]: event.target.value
-        });
-      }
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
 
-      handleSubmit = async event => {
-        event.preventDefault();
+  handleSubmit = async event => {
+    event.preventDefault();
 
-        this.setState({ isLoading: true });
+    this.setState({ isLoading: true });
 
-        try {
-          this.setState({ newProduct: true });
-          fetch("/api/add_product/" + this.state.title + ";" + this.state.description +
-           ";" + this.state.price +";" + this.state.quantity);
-          // TODO: Log in the user and redirect page
-        } catch (e) {
-          alert(e.message);
-        }
+    try {
+      this.setState({ newProduct: true });
+      fetch("/api/add_product/" + this.state.title + ";" + this.state.description +
+      ";" + this.state.price +";" + this.state.quantity);
+      // TODO: Log in the user and redirect page
+    } catch (e) {
+      alert(e.message);
+    }
 
-        this.setState({ isLoading: false });
-      }
+    this.setState({ isLoading: false });
+  }
 
   render() {
     const updateProfile = e => {
@@ -88,14 +88,14 @@ class EditProfile extends React.Component {
                   Add Picture
                 </Button>
               </FormGroup>
-                <FormGroup controlId="title" bsSize="large">
-                  <FormLabel>Title</FormLabel>
-                    <FormControl
-                      id="title"
-                      value={this.state.title}
-                      onChange={this.handleChange}
-                      />
-                </FormGroup>
+              <FormGroup controlId="title" bsSize="large">
+                <FormLabel>Title</FormLabel>
+                <FormControl
+                  id="title"
+                  value={this.state.title}
+                  onChange={this.handleChange}
+                  />
+              </FormGroup>
               <FormGroup controlId="description" bsSize="large">
                 <FormLabel>Discription</FormLabel>
                 <FormControl
@@ -124,11 +124,11 @@ class EditProfile extends React.Component {
           </Card.Body>
         </Card>
         <br />
-          <Button
-            disabled={!this.validateForm()}
-            type="submit">
-            Add
-            </Button>
+        <Button
+          disabled={!this.validateForm()}
+          type="submit">
+          Add
+        </Button>
         <Button
           className="float-right"
           onClick={() => this.props.history.goBack()}

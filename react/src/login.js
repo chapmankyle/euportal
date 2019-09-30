@@ -31,7 +31,7 @@ export default class Login extends Component {
       return response.text().then(function(text) {
         // TODO: set session = text
         if (text === ""){
-          alert("Email/Password incorrect, please try again")
+          alert("Email/Password incorrect, please try again");
         } else {
           cookies.set("session", text, { path: '/' });
         }

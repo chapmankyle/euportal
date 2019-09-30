@@ -6,6 +6,7 @@
 import mysql.connector
 import time
 import json
+from utils import get_password_hash, get_password_verification
 
 try:
     connection = mysql.connector.connect(
@@ -36,12 +37,15 @@ def execute_query(query, query_info, return_data=False):
 
 def login_user(email, password):
     query = (
-        "SELECT session_id FROM customers WHERE email=%s AND password=%s")
-    query_info = (email, password)
+        "SELECT session_id, password FROM customers WHERE email=\"%s\"" % email)
+    query_info = email
     session = execute_query(query, query_info, True)
     if (session == []):
-        return ""
-    return session[0][0]
+        return "assa"
+    if (get_password_verification(session[0][1], password)):
+        return session[0][0]
+    return ""
+
 
 def register_staff(name, password, email, _type):
     """Registers a staff member with all relevant details."""
@@ -57,7 +61,7 @@ def register_customer(firstname, surname, password, email):
     """Registers a new customer."""
     session = generate_session_id(firstname)
     query = ("INSERT INTO customers (firstname, surname, password, email, session_id) VALUES (%s, %s, %s, %s, %s)")
-    query_info = (firstname, surname, password, email, session)
+    query_info = (firstname, surname, get_password_hash(password), email, session)
     execute_query(query, query_info)
     print("Added new customer user to DB")
     return session

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Jumbotron, Col, Image, Card, Modal } from 'react-bootstrap/';
+import { Container, Row, 
+  Jumbotron, Col, Image, Card, Modal, Button, Alert } from 'react-bootstrap/';
 
 import image1 from './images/products/product-1.jpg';
 import image2 from './images/products/product-2.jpg';
@@ -7,7 +8,12 @@ import image3 from './images/products/product-3.jpg';
 import image4 from './images/products/product-4.jpg';
 import './css/products.css';
 
-export default class SingleProduct extends React.Component {
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addToCart } from "./actions/cart";
+
+class SingleProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,11 +24,12 @@ export default class SingleProduct extends React.Component {
         id: null,
         text: null,
         description: null,
-      }
+      },
+      add: 'none'
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetch(`/api/products/${this.props.match.params.id}`)
     .then(res => res.json())
     .then(res => {
@@ -44,6 +51,23 @@ export default class SingleProduct extends React.Component {
 
     const handleShow = (image) => setShow(image, true);
     const handleClose = () => setShow(null, false);
+
+    const add = (e) => {
+      this.props.addToCart(product.id, product.name, product.price);
+      let target = e.target; 
+      target.className = 
+        target.className.replace('btn-primary', 'btn-success');
+        this.setState({
+          add: 'block'
+        });
+        setTimeout(() => {
+          this.setState({
+            add: 'none'
+          });
+          target.className = 
+            target.className.replace('btn-success', 'btn-primary');
+        }, 3000);
+      }
 
     const setShow = (image, bool) => {
       this.setState({
@@ -86,6 +110,15 @@ export default class SingleProduct extends React.Component {
               <br/>
               <h2 className='text-center'>Description</h2>
               <p>{product.description}</p>
+              R {product.price}
+              <br />
+              <br />
+              <Button onClick={add}>Add To Cart</Button>
+              <br />
+              <br />
+              <Alert style={{ display: this.state.add }} variant="success">
+                Item Added to Cart
+              </Alert>
             </Col>
           </Row>
 
@@ -101,3 +134,12 @@ export default class SingleProduct extends React.Component {
     )
   }
 }
+
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ addToCart }, dispatch);
+}
+export default connect(
+  null,
+  matchDispatchToProps
+)(SingleProduct);

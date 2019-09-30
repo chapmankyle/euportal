@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Row, Jumbotron, Button, CardDeck } from 'react-bootstrap/';
+import { Container, Jumbotron, Button, CardDeck } from 'react-bootstrap/';
 import './css/products.css';
 import { ItemCard, ModalButton } from './templates'
-
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addToCart } from "./actions/cart";
 import AddProduct from './addProduct';
 
-class Products extends Component {
+export default class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +13,7 @@ class Products extends Component {
   }
 
   componentWillMount() {
+    // UNSAFE_Currently
     // TODO: add to store instead
     fetch("/api/products")
       .then(res => res.json())
@@ -49,7 +46,7 @@ class Products extends Component {
           <CardDeck>
             {products.length > 0 ? products.map(item => (
               <ItemCard id={item[0]} name={item[1]} text={item[2]} price={item[3]}
-                admin={admin} addToCart={this.props.addToCart} push={this.props.history.push}
+                admin={admin} push={this.props.history.push}
               />
             )) : <h3>No Products Found</h3>}
           </CardDeck>
@@ -58,11 +55,3 @@ class Products extends Component {
     );
   }
 }
-
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ addToCart }, dispatch);
-}
-export default connect(
-  null,
-  matchDispatchToProps
-)(Products);

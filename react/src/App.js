@@ -95,11 +95,11 @@ function Foot() {
         Copyright 2019 EPI-USE Systems Limited | a member of
         <a href="https://groupelephant.com">groupelephant.com</a> | <a
         href="https://epiuse.com/privacy-policy/" target="_blank"
-        rel="noopener">Privacy Policy</a>&nbsp;| <a
+        rel="noopener noreferrer">Privacy Policy</a>&nbsp;| <a
         href="https://epiuse.com/cookie-policy/" target="_blank"
-        rel="noopener">Cookie Policy</a> | <a
+        rel="noopener noreferrer">Cookie Policy</a> | <a
         href="https://epiuse.com/disclaimer/" target="_blank"
-        rel="noopener">Disclaimer</a>
+        rel="noopener noreferrer">Disclaimer</a>
       </div>
     </footer>
   );

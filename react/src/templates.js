@@ -1,56 +1,48 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal, FormControl , InputGroup} from 'react-bootstrap/';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, Modal, FormControl , InputGroup, ButtonGroup} from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
 
 function ItemCard(props) {
   return (
-    <div className="col-md-4">
-      <div className="card shadow trans">
-        <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
-        <div className="card-body">
-          <h5 className="card-title"><strong>{props.name}</strong></h5>
-          <hr />
-          <p className="card-text">{props.text}</p>
-          {props.admin ? (
-            // TODO: Make buttons look beautiful
-            <div>
-              <Button>Edit</Button> <Button>Delete</Button>
-              <br /><br />
-            </div>
-          ) : null}
-          <div>
-            <Button onClick={() => props.addToCart(props.item)}>Add to Cart</Button>
-          </div>
-        </div>
-      </div>
-    </div >
+      <Card className="shadow trans mt-0" onClick={() => (props.push(`/products/${props.id}`))}>
+        <Card.Img variant="top" src="../static/images/logo.png" alt="logo" />
+        <Card.Body>
+          <Card.Title ><strong>{props.name}</strong></Card.Title>
+          <Card.Text className="card-text">{props.text}</Card.Text>
+          <>
+          <Button onClick={() => props.addCart(props.item)}>Add to cart</Button>
+            {props.admin ? (
+                <ButtonGroup className="float-right">
+                <Button>Edit</Button> <Button>Delete</Button>
+                </ButtonGroup>
+            ) : null}
+          </>
+        </Card.Body>
+      </Card>
   );
 }
 
 function ServiceCard(props) {
   return (
-    <div className="col-md-4">
-      <div className="card shadow trans">
-        <img className="card-img-top" src="../static/images/logo.png" alt="logo" />
-        <div className="card-body">
-          <h5 className="card-title"><strong>{props.name}</strong></h5>
-          <hr />
-          <p className="card-text">{props.text}</p>
-          {props.admin ? (
-            // TODO: Make buttons look beautiful
-            <div>
-              <Button>Edit</Button> <Button>Delete</Button>
-              <br /><br />
-            </div>
-          ) : null}
-          <div>
-            <Button onClick={() => props.addToCart(props.item)}>Add to Cart</Button>
-          </div>
-        </div>
-      </div>
-    </div >
+  <Card className="shadow trans mt-0" onClick={() => (props.push(`/products/${props.id}`))}>
+          <Card.Img variant="top" src="../static/images/logo.png" alt="logo" />
+          <Card.Body>
+            <Card.Title ><strong>{props.name}</strong></Card.Title>
+            <Card.Text className="card-text">{props.text}</Card.Text>
+            <>
+            {props.admin ? (
+                <>
+                <Button>Edit</Button> <Button>Delete</Button>
+                </>
+            ) : null}
+
+              <Button className="float-right" onClick={() => props.addCart(props.item)}>Add to cart</Button>
+            </>
+          </Card.Body>
+        </Card>
+
   );
 }
 
@@ -68,11 +60,6 @@ function ModalButton(props) {
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{props.body}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-            </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

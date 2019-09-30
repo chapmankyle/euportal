@@ -60,7 +60,7 @@ class Profile extends React.Component {
                 <br></br>
                 <Tabs defaultActiveKey="details" id="uncontrolled-tab-example">
                   <Tab eventKey="details" title="My details">
-                    <Card>
+                    <Card className="mt-0">
                       <Card.Body>
                         <Row>
                           <Col>
@@ -82,7 +82,7 @@ class Profile extends React.Component {
                     </Card>
                   </Tab>
                   <Tab eventKey="transaction" title="Transaction History">
-                    <Card>
+                    <Card className="mt-0">
                       <Jumbotron className="noTransactions">
                         <h1>You have no past transactions</h1>
                         <p> When you buy products they will get listed here for you to view!</p>

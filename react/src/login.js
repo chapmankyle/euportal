@@ -28,27 +28,30 @@ export default class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    fetch("/api/login/" + this.state.email +";" + this.state.password).then(function(response) {
-      return response.text().then(function(text) {
+    fetch(`/api/login/${this.state.email};${this.state.password}`)
+    .then(response => response.text())
+    .then((text) => {
+      if (text === ""){
+        alert("Email/Password incorrect, please try again");
+      } else {
+        this.state.session = text;
+        cookies.set("session", text);
+      }
+    })
+    .then(() => { 
+      fetch(`/api/check_if_admin/${this.state.session}`)
+      .then(response => response.text())
+      .then(text => {
         if (text === ""){
-          alert("Email/Password incorrect, please try again");
+          cookies.set("user_type", "normal");
         } else {
-          this.state.session = text;
-          cookies.set("session", text, { path: '/' });
-          alert(cookies.get("session"));
+          cookies.set("user_type", text);
         }
+        this.props.history.push('/profile');
       });
-    });
-
-    fetch("/api/check_if_admin/" + this.state.session).then(function(response) {
-      return response.text().then(function(text) {
-        if (text === ""){
-          alert("Session checking error");
-        } else {
-          cookies.set("user_type", text, { path: '/' });
-          alert(cookies.get("user_type"));
-        }
-      });
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
 

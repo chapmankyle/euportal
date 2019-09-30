@@ -41,11 +41,27 @@ def login_user(email, password):
     query_info = email
     session = execute_query(query, query_info, True)
     if (session == []):
-        return "assa"
+        query = (
+            "SELECT session_id, password FROM staff WHERE email=\"%s\"" % email)
+        query_info = email
+        session = execute_query(query, query_info, True)
+        if (session == []):
+            return ""
+        if (get_password_verification(session[0][1], password)):
+            return session[0][0]
+        return ""
     if (get_password_verification(session[0][1], password)):
         return session[0][0]
     return ""
 
+def check_if_admin(session):
+    query = (
+        "SELECT * FROM staff WHERE session_id=%s")
+    query_info = (session)
+    result = execute_query(query, query_info, True)
+    if (result == []):
+        return "False"
+    return "True"
 
 def register_staff(name, password, email, _type):
     """Registers a staff member with all relevant details."""

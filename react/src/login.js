@@ -10,7 +10,8 @@ export default class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      session: ""
     };
   }
 
@@ -29,12 +30,23 @@ export default class Login extends Component {
 
     fetch("/api/login/" + this.state.email +";" + this.state.password).then(function(response) {
       return response.text().then(function(text) {
-        // TODO: set session = text
         if (text === ""){
           alert("Email/Password incorrect, please try again");
         } else {
+          this.state.session = text;
           cookies.set("session", text, { path: '/' });
           alert(cookies.get("session"));
+        }
+      });
+    });
+
+    fetch("/api/check_if_admin/" + this.state.session).then(function(response) {
+      return response.text().then(function(text) {
+        if (text === ""){
+          alert("Session checking error");
+        } else {
+          cookies.set("user_type", text, { path: '/' });
+          alert(cookies.get("user_type"));
         }
       });
     });

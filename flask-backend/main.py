@@ -35,6 +35,11 @@ def register_staff(name, password, email, _type):
 	""" Registers a new staff memeber, returns the session ID """
 	return db.register_staff(name, password, email, _type)
 
+@app.route("/api/check_if_admin/<session>")
+def check_if_admin(session):
+	""" Checks if the session belongs to a staff member """
+	return db.check_if_admin(session)
+
 @app.route("/api/login/<email>;<password>")
 def login_user(email, password):
 	""" Logs a user in by returning the session ID """

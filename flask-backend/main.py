@@ -13,7 +13,7 @@ def get_all_products():
 @app.route("/api/products/<int:id>")
 def get_product(id):
 	"""Return single of product with id."""
-	return jsonify(db.get_product(id))
+	return jsonify(db.get_product_id(id))
 
 @app.route("/")
 def index():
@@ -52,7 +52,6 @@ def update_customer(firstname, surname, password, email, session):
 	print("getting customer data from db")
 	return jsonify(db.update_customer(firstname, surname, password, email, session))
 
-# TODO: Need to test
 @app.route("/api/delete_customer/<session>")
 def delete_customer(session):
 	""" Deletes a customers account, returns Boolean """

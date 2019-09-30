@@ -25,6 +25,7 @@ class Checkout extends React.Component {
       console.log(this.state);
       this.props.removeFromCart(i);
     };
+    console.log(this.state);
     return (
       <div>
         <Jumbotron>

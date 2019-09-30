@@ -6,6 +6,9 @@ import "./css/index.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import allReducer from "./reducers/index";
+import Cookies from "universal-cookie"
+
+const cookies = new Cookies();
 
 const store = createStore(
   allReducer,
@@ -16,6 +19,7 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
+  
   document.getElementById("root")
 );
 
@@ -23,3 +27,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export default cookies;

@@ -47,7 +47,7 @@ class Products extends Component {
         <Container>
           <CardDeck>
             {products.length > 0 ? products.map(item => (
-              <ItemCard id={item.id} name={item.name} text={item.text} admin={admin} addToCart={this.props.addToCart} />
+              <ItemCard id={item.id} name={item.name} text={item.text} admin={admin} addToCart={this.props.addToCart} item={item} />
             )) : <h3>No Products Found</h3>}
           </CardDeck>
         </Container>

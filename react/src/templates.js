@@ -13,11 +13,11 @@ function ItemCard(props) {
           <Card.Text className="card-text">{props.text}</Card.Text>
           <>
           <Button onClick={() => props.addCart(props.item)}>Add to cart</Button>
-          {props.admin ? (
-              <ButtonGroup className="float-right">
-              <Button>Edit</Button> <Button>Delete</Button>
-              </ButtonGroup>
-          ) : null}
+            {props.admin ? (
+                <ButtonGroup className="float-right">
+                <Button>Edit</Button> <Button>Delete</Button>
+                </ButtonGroup>
+            ) : null}
           </>
         </Card.Body>
       </Card>
@@ -42,6 +42,7 @@ function ServiceCard(props) {
             </>
           </Card.Body>
         </Card>
+
   );
 }
 

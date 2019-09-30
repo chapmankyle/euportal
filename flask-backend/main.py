@@ -57,6 +57,12 @@ def update_customer(firstname, surname, password, email, session):
 	print("getting customer data from db")
 	return jsonify(db.update_customer(firstname, surname, password, email, session))
 
+@app.route("/api/add_product/<name>;<description>;<price>;<stock>")
+def add_product(name, description, price, stock):
+	""" Adds a new product, returns the session ID """
+	return db.add_product(name, description, price, stock)
+
+
 @app.route("/api/delete_customer/<session>")
 def delete_customer(session):
 	""" Deletes a customers account, returns Boolean """

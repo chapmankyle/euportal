@@ -32,15 +32,18 @@ export default class Products extends Component {
     return (
       <div>
         <Jumbotron>
-        <Container>
-                    <h1>Shop Banner!</h1>
-                    <p>
-                      This is my store, thank you for shopping with us!
+          <Container>
+            <h1>Shop Banner!</h1>
+            <p>
+              This is my store, thank you for shopping with us!
                     <br />
-                      You can contact me on: 123-456-7890
+              You can contact me on: 123-456-7890
                   </p>
-                  <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session}/>} />
-                  </Container>
+            {admin ? (
+              <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session} />} />
+            ) : null}
+
+          </Container>
         </Jumbotron>
         <Container>
           <CardDeck>

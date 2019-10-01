@@ -65,9 +65,10 @@ def check_if_admin(session):
 
 def register_staff(name, password, email, _type):
     """Registers a staff member with all relevant details."""
+    password_hash = get_password_hash(password)
     session = generate_session_id(name)
     query = ("INSERT INTO staff (name, password, email, type, session_id) VALUES (%s, %s, %s, %s, %s)")
-    query_info = (name, password, email, _type, session)
+    query_info = (name, password_hash, email, _type, session)
     execute_query(query, query_info)
     print("Added new staff user to DB")
     return session
@@ -75,9 +76,10 @@ def register_staff(name, password, email, _type):
 
 def register_customer(firstname, surname, password, email):
     """Registers a new customer."""
+    password_hash = get_password_hash(password)
     session = generate_session_id(firstname)
     query = ("INSERT INTO customers (firstname, surname, password, email, session_id) VALUES (%s, %s, %s, %s, %s)")
-    query_info = (firstname, surname, get_password_hash(password), email, session)
+    query_info = (firstname, surname, password_hash, email, session)
     execute_query(query, query_info)
     print("Added new customer user to DB")
     return session

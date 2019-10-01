@@ -7,24 +7,11 @@ import { bindActionCreators } from "redux";
 import { removeFromCart } from "./actions/cart";
 
 class Checkout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cart: props.cart
-    };
-  }
   checkout() {
     console.log("out");
   }
+
   render() {
-    const removeItem = i => {
-      this.setState(state => {
-        // eslint-disable-next-line no-unused-labels
-        cart: state.cart.filter((item, index) => index === i);
-      });
-      console.log(this.state);
-      this.props.removeFromCart(i);
-    };
     return (
       <div>
         <Jumbotron>
@@ -35,7 +22,7 @@ class Checkout extends React.Component {
           </Container>
         </Jumbotron>
         <div className="container">
-          {this.state.cart.length > 0 ? (
+          {this.props.cart.length > 0 ? (
             <div>
               <Table responsive>
                 <thead>
@@ -48,14 +35,14 @@ class Checkout extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.cart.map((product, i) => (
-                    <tr key={i}>
-                      <td>{product.id}</td>
-                      <td>{product.name}</td>
-                      <td>1</td>
-                      <td>R {product.price}</td>
+                  {this.props.cart.map(p => (
+                    <tr key={p.product.id}>
+                      <td>{p.product.id}</td>
+                      <td>{p.product.name}</td>
+                      <td>{p.quantity}</td>
+                      <td>R {p.product.price}</td>
                       <td>
-                        <Button variant="danger" onClick={i => removeItem(i)}>
+                        <Button variant="danger" onClick={() =>  this.props.removeFromCart(p.product.id)}>
                           Delete
                         </Button>
                       </td>
@@ -67,8 +54,8 @@ class Checkout extends React.Component {
               <span className="total-cost">Total Cost: </span>
               <span>
                 R{" "}
-                {this.state.cart.length > 0
-                  ? this.state.cart.reduce((sum, val) => sum + val.price, 0)
+                {this.props.cart.length > 0
+                  ? this.props.cart.reduce((sum, val) => sum + val.product.price * val.quantity, 0)
                   : "0"}
               </span>
               <br />

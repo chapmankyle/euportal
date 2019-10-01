@@ -14,6 +14,7 @@ import Products from "./products";
 import Profile from "./profile";
 import Register from "./register";
 import SingleProduct from "./singleProduct";
+import cookies from "./cookiestore";
 
 import "./css/App.css"
 
@@ -30,6 +31,10 @@ class App extends React.Component{
 }
 
 function Layout() {
+  var isLoggedin = true;
+  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === ""){
+    isLoggedin = false;
+  }
   return (
     <Router>
       <div className="page-container">
@@ -40,11 +45,22 @@ function Layout() {
               {' Company Name '}
             </Navbar.Brand>
             <Navbar.Collapse>
-              <Nav className="mr-auto push-right">
-                <NavLink className="link mr-4" to="/profile">
-                  <i className="fas fa-user-circle"></i>&nbsp; Profile
-                </NavLink>
-              </Nav>
+              {isLoggedin ? (
+                <Nav className="mr-auto push-right">
+                  <NavLink className="link mr-4" to="/profile">
+                    <i className="fas fa-user-circle"></i>&nbsp; Profile
+                  </NavLink>
+                  <NavLink className="link mr-4" to="/logout">
+                    <i className="fas fa-user-circle"></i>&nbsp; Logout
+                  </NavLink>
+                </Nav>
+                ) : (
+                <Nav className="mr-auto push-right">
+                  <NavLink className="link mr-4" to="/login">
+                    <i className="fas fa-user-circle"></i>&nbsp; Login
+                  </NavLink>
+                </Nav>
+              )}
               <Nav className="mr-auto push-right">
                 <NavLink className="link mr-4" to="/products">
                   <i className="fas fa-box-open"></i>&nbsp; Products
@@ -69,6 +85,7 @@ function Layout() {
         <div className="push-footer">
           <Switch>
             <Route exact path="/" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/landing" component={Landing} />
             <Route path="/profile" component={Profile} />
             <Route path="/customize" component={Customize} />
@@ -103,6 +120,10 @@ function Foot() {
       </div>
     </footer>
   );
+}
+
+function Logout() {
+  cookies.set("session", "", { path: "/" });
 }
 
 export default App;

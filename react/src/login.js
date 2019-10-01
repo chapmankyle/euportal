@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import './css/App.css';
 import "./css/login.css";
+import cookies from "./cookiestore";
 
 export default class Login extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      session: ""
     };
   }
 
@@ -25,6 +27,32 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    fetch(`/api/login/${this.state.email};${this.state.password}`)
+    .then(response => response.text())
+    .then((text) => {
+      if (text === ""){
+        alert("Email/Password incorrect, please try again");
+      } else {
+        this.state.session = text;
+        cookies.set("session", text);
+      }
+    })
+    .then(() => { 
+      fetch(`/api/check_if_admin/${this.state.session}`)
+      .then(response => response.text())
+      .then(text => {
+        if (text === ""){
+          cookies.set("user_type", "normal");
+        } else {
+          cookies.set("user_type", text);
+        }
+        this.props.history.push('/profile');
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   render() {

@@ -17,13 +17,15 @@ import {
 import profile from "./images/profile.png";
 import "./css/App.css";
 
-class Profile extends React.Component {
+class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Jane",
-      surname: "Doe",
-      email: "jane.doe@gmail.com",
+      name: props.firstname,
+      surname: props.surname,
+      email: props.email,
+      password: props.password,
+      session: props.session,
       cardDetails: [
         {
           name: "Capitec Bank",
@@ -46,14 +48,22 @@ class Profile extends React.Component {
     ];
 
     const updateState = e => {
+      console.log("Update")
       this.setState({
         [e.target.id]: e.target.value
       });
     };
 
     const updateProfile = e => {
-      e.preventDefault();
       console.log(this.state);
+
+      try {
+        fetch("/api/update_customer/" + this.state.name + ";" + this.state.surname + ";" + 
+        this.state.password + ";" + this.state.email + ";" + this.state.session ).then(() => window.location.reload())
+      } catch (e) {
+        alert(e.message);
+      }
+      
     };
 
     const updateBank = e => {
@@ -64,11 +74,6 @@ class Profile extends React.Component {
     const updateProfilePicture = () => {};
     return (
       <div>
-        <Jumbotron>
-          <Container>
-            <h1>Edit Profile</h1>
-          </Container>
-        </Jumbotron>
         <Container>
           <br />
           <Row>
@@ -206,4 +211,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default EditProfile;

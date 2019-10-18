@@ -3,11 +3,11 @@ import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-b
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
-import { ModalButton } from './templates';
+import { PaymentCard } from './templates';
 import EditProfile from './editProfile';
 import cookies from './cookiestore';
 
-class Profile extends React.Component {
+class Payment extends React.Component {
 
   constructor(props) {
     super(props);
@@ -15,11 +15,12 @@ class Profile extends React.Component {
 
 
   render() {
-    // return (
-    // <>
-    // <>
-    // );
+    return (
+  
+      <PaymentCard />
+  
+    );
   }
 }
 
-export default Profile;
+export default Payment;

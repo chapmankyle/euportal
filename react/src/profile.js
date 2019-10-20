@@ -18,8 +18,9 @@ class Profile extends React.Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     try {
+      console.log(cookies.get('session'))
       fetch(`/api/get_customer/${cookies.get('session')}`)
         .then(response => response.json())
         .then(data => {

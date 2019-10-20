@@ -12,7 +12,7 @@ export default class Products extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // UNSAFE_Currently
     // TODO: add to store instead
     fetch("/api/products")

@@ -34,20 +34,21 @@ export default class Login extends Component {
       if (text === ""){
         alert("Email/Password incorrect, please try again");
       } else {
-        this.state.session = text;
+        this.state.setState({session: text});
         cookies.set("session", text);
       }
     })
     .then(() => { 
       fetch(`/api/check_if_admin/${this.state.session}`)
-      .then(response => response.text())
+      .then(response => response.json())
       .then(text => {
-        if (text === ""){
-          cookies.set("user_type", "normal");
-        } else {
-          cookies.set("user_type", text);
-        }
-        this.props.history.push('/profile');
+        console.log(text);
+        // if (text === ""){
+        //   cookies.set("user_type", "normal");
+        // } else {
+        //   cookies.set("user_type", text);
+        // }
+        // this.props.history.push('/profile');
       });
     })
     .catch(err => {
@@ -55,11 +56,17 @@ export default class Login extends Component {
     });
   }
 
+  UNSAFE_componentWillMount() {
+    if (!(cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "")){
+      this.props.history.push('/profile');
+    }
+  }
+
   render() {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email">
             <FormLabel>Email</FormLabel>
             <FormControl
               autoFocus
@@ -68,7 +75,7 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password">
             <FormLabel>Password</FormLabel>
             <FormControl
               value={this.state.password}
@@ -78,7 +85,6 @@ export default class Login extends Component {
           </FormGroup>
           <Button
             block
-            bsSize="large"
             disabled={!this.validateForm()}
             type="submit">
             Login

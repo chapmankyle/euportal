@@ -124,6 +124,7 @@ function Foot() {
 
 function Logout() {
   cookies.set("session", "", { path: "/" });
+  window.location = '/login';
 }
 
 export default App;

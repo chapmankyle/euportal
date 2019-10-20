@@ -35,6 +35,7 @@ def execute_query(query, query_info, return_data=False):
     cursor.close()
     return data
 
+
 def login_user(email, password):
     query = (
         "SELECT session_id, password FROM customers WHERE email=\"%s\"" % email)
@@ -54,20 +55,23 @@ def login_user(email, password):
         return session[0][0]
     return ""
 
+
 def check_if_admin(session):
     query = (
-        "SELECT * FROM staff WHERE session_id=%s")
+        "SELECT * FROM staff WHERE session_id=%s" % session)
     query_info = (session)
     result = execute_query(query, query_info, True)
     if (result == []):
         return "False"
     return "True"
 
+
 def register_staff(name, password, email, _type):
     """Registers a staff member with all relevant details."""
     password_hash = get_password_hash(password)
     session = generate_session_id(name)
-    query = ("INSERT INTO staff (name, password, email, type, session_id) VALUES (%s, %s, %s, %s, %s)")
+    query = (
+        "INSERT INTO staff (name, password, email, type, session_id) VALUES (%s, %s, %s, %s, %s)")
     query_info = (name, password_hash, email, _type, session)
     execute_query(query, query_info)
     print("Added new staff user to DB")
@@ -96,7 +100,7 @@ def add_product(name, description, price, stock):
 
 def get_customer(session):
     """Gets a customer from the database using the session ID."""
-    query = ("SELECT * FROM customers WHERE session_id like \"%s\"" %session )
+    query = ("SELECT * FROM customers WHERE session_id like \"%s\"" % session)
     query_info = session
     data = execute_query(query, query_info, True)
     print("Getting Customer")
@@ -114,13 +118,16 @@ def get_product(name):
     print("Retrieved product")
     return data
 
+
 def get_all_products():
+    # TODO: Unsure about the purpose of this function, doc string does not match use (See git history)
     """Returns a list of all the products by name."""
-    query = ("SELECT * FROM products WHERE name=%s")
-    query_info = (name)
+    query = ("SELECT * FROM products")
+    query_info = ("")
     data = execute_query(query, query_info, True)
     print("Retrieved product")
     return data
+
 
 def update_customer(firstname, surname, password, email, session):
     """Updates the details of a specified customer using their session ID."""
@@ -139,7 +146,8 @@ def delete_customer(session):
     print("Deleted customer")
     return True
 
-def delete_product(product_id):
+
+def delete_product_by_id(product_id):
     query = (
         "DELETE FROM products WHERE product_id=\"%s\"" % product_id)
     query_info = (product_id)
@@ -158,6 +166,7 @@ def get_products():
     else:
         return False
 
+
 def get_product_id(id):
     query = ("SELECT * FROM products WHERE product_id=\"%d\"" % id)
     query_info = ()
@@ -167,6 +176,8 @@ def get_product_id(id):
         return data[0]
     else:
         return False
+
+
 def update_product(name, description, price, stock):
     """Updates the details of a specified product."""
     query = ("UPDATE products SET name=%s, description=%s, price=%s, stock=%s")

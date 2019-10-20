@@ -1,9 +1,9 @@
 import React from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, FormControl, FormLabel, FormGroup } from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
-import { ModalButton } from './templates';
+import { ModalButton, PaymentCard } from './templates';
 import EditProfile from './editProfile';
 import cookies from './cookiestore';
 
@@ -85,8 +85,10 @@ class Profile extends React.Component {
                         <h1>You have no past transactions</h1>
                         <p> When you buy products they will get listed here for you to view!</p>
                       </Jumbotron>
-                    </Card>                  </Tab>
+                    </Card>                  
+                    </Tab>
                 </Tabs>
+                <PaymentCard />
               </div>
             </Col>
           </Row>

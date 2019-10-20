@@ -34,7 +34,7 @@ export default class Login extends Component {
       if (text === ""){
         alert("Email/Password incorrect, please try again");
       } else {
-        this.state.setState({session: text});
+        this.setState({session: text});
         cookies.set("session", text);
       }
     })

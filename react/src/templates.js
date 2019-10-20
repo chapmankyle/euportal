@@ -9,14 +9,6 @@ function ItemCard(props) {
         <Card.Body>
           <Card.Title ><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">{props.text}</Card.Text>
-          <>
-          <Button onClick={() => props.addCart(props.item)}>Add to cart</Button>
-            {props.admin ? (
-                <ButtonGroup className="float-right">
-                <Button>Edit</Button> <Button>Delete</Button>
-                </ButtonGroup>
-            ) : null}
-          </>
         </Card.Body>
       </Card>
   );

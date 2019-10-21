@@ -4,20 +4,37 @@ import Img from 'react-image';
 import logo from './images/react.png'
 import './css/App.css';
 import EditCustomize from "./editCustomize"
-import {ModalButton} from './templates';
-
+import { ModalButton } from './templates';
+import { connect } from 'react-redux';
+import { updateTheme } from './actions/theme';
+import { bindActionCreators } from "redux";
 
 class Customize extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: {
+        primary: `#${props.theme.primary.toLowerCase()}`,
+        secondary: `#${props.theme.secondary.toLowerCase()}`,
+        tertiary: `#${props.theme.tertiary.toLowerCase()}`,
+        aboutus: `#${props.theme.about_us.toLowerCase()}`,
+      }
+    };
+  }
+  handleChangeComplete = (color) => {
+    this.setState({ background: color.hex });
+  };
+
   render() {
     return (
       <>
         <CustomizeBanner />
-        <Container class="main-container">
+        <Container className="main-container">
           <Row className="justify-content-md-center">
             <Col xs lg="20">
-              <div class='Customize'>
+              <div className='Customize'>
                 <br></br>
-                <CustomizeTabs />
+                <CustomizeTabs updateTheme={this.props.updateTheme} theme={this.state.theme} />
               </div>
             </Col>
           </Row>
@@ -39,14 +56,21 @@ function CustomizeBanner() {
   );
 }
 
-function LookAndFeel() {
+function LookAndFeel(props) {
   return (
     <Col>
       <h2>Look and Feel</h2>
-      <h6>Primary Color</h6>Dark Grey <br />
-      <h6>Secondary Color</h6>Light Blue/Grey<br />
-      <h6>Accent Color</h6>Light Blue <br /><br />
-      <ModalButton buttonName="Edit Look and Feel" title="Edit Look and Feel" body={<EditCustomize />} />
+      <h6>Primary Color</h6>
+      {props.theme.primary}
+      <br />
+      <h6>Secondary Color</h6>
+      {props.theme.secondary}
+      <br />
+      <h6>Accent Color</h6>
+      {props.theme.tertiary}
+      <br /><br />
+      <ModalButton buttonName="Edit Look and Feel" title="Edit Look and Feel" 
+      body={<EditCustomize updateTheme={props.updateTheme} theme={props.theme} />} />
     </Col>
   );
 }
@@ -55,7 +79,7 @@ function Logo() {
   return (
     <Col>
       <h2>Your Logo</h2>
-      <Img class="logoImg" src={logo} /><br /><br />
+      <Img className="logoImg" src={logo} /><br /><br />
     </Col>
   );
 }
@@ -73,20 +97,20 @@ function Categories() {
   );
 }
 
-function CustomizeTabs() {
+function CustomizeTabs(props) {
   return (
     <Tabs defaultActiveKey="lookandfeel" id="uncontrolled-tab-example">
       <Tab eventKey="lookandfeel" title="Look And Feel">
         <Card className="mt-0">
           <Card.Body>
             <Row>
-              <LookAndFeel />
+              <LookAndFeel theme={props.theme} updateTheme={props.updateTheme} />
               <Logo />
             </Row>
           </Card.Body>
         </Card>
       </Tab>
-      <Tab class="categories" eventKey="categories" title="Categories">
+      <Tab className="categories" eventKey="categories" title="Categories">
         <Card className="mt-0">
           <Card.Body>
             <Row>
@@ -103,4 +127,18 @@ function CustomizeTabs() {
   );
 }
 
-export default Customize;
+function mapStateToProps(state) {
+  return {
+    theme: state.theme
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ updateTheme }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  matchDispatchToProps
+)(Customize);
+

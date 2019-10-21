@@ -1,9 +1,9 @@
 import React from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, FormControl, FormLabel, FormGroup } from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
-import { ModalButton } from './templates';
+import { ModalButton, PaymentCard } from './templates';
 import EditProfile from './editProfile';
 import cookies from './cookiestore';
 
@@ -12,15 +12,22 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       firstname: "",
       surname: "",
-      email: ""
+      email: "",
+      password: "",
+      session: ""
     };
   }
 
-  componentWillMount() {
-    try {
-      fetch(`/api/get_customer/${cookies.get('session')}`)
+  UNSAFE_componentWillMount() {
+    if (!cookies.get("session")){
+      this.props.history.push('/login');
+      return;
+    }
+     try {
+       fetch(`/api/get_customer/${cookies.get('session')}`)
         .then(response => response.json())
         .then(data => {
           console.log(data)
@@ -74,7 +81,14 @@ class Profile extends React.Component {
                             <br />
                           </Col>
                         </Row>
-                        <ModalButton buttonName="Edit Details" title="Edit Details" body={<EditProfile firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session}/>} />
+                        <ModalButton buttonName="Edit Details" title="Edit Details" 
+                          body={
+                            <EditProfile firstname={this.state.firstname} 
+                              surname={this.state.surname} password={this.state.password} 
+                              email={this.state.email} session={this.state.session}
+                            />
+                          }
+                        />
                       </Card.Body>
                     </Card>
                   </Tab>
@@ -84,8 +98,10 @@ class Profile extends React.Component {
                         <h1>You have no past transactions</h1>
                         <p> When you buy products they will get listed here for you to view!</p>
                       </Jumbotron>
-                    </Card>                  </Tab>
+                    </Card>                  
+                    </Tab>
                 </Tabs>
+                {/* <PaymentCard /> */}
               </div>
             </Col>
           </Row>

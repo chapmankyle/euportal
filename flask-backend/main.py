@@ -95,6 +95,18 @@ def test_email():
     return get_verification_email_content(verification_link)
 
 
+@app.route("/api/get_settings")
+def get_site_settings():
+    print(db.get_settings())
+    return jsonify(db.get_settings())
+
+
+@app.route("/api/update_settings/<primary>;<secondary>;<tertiary>;<about_us>")
+def update_site_settings(primary, secondary, tertiary, about_us):
+    db.update_settings(primary, secondary, tertiary, about_us)
+    return jsonify(db.get_settings())
+
+
 if __name__ == "__main__":
     """Run server in debug mode."""
     app.run(debug=True)

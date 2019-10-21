@@ -193,3 +193,18 @@ def delete_product(name):
     query_info = (name)
     execute_query(query, query_info)
     print("Deleted product")
+
+
+def get_settings():
+    """ Get theme settings """
+    query = ("SELECT * FROM settings")
+    data = execute_query(query, '', True)
+    return data[0]
+
+
+def update_settings(primary, secondary, tertiary, about_us):
+    """ Update theme settings """
+    query = ("INSERT INTO settings (primary_colour, secondary_colour, tertiary_colour, about_us) VALUES (%s, %s, %s, %s)")
+    query_info = (primary, secondary, tertiary, about_us)
+    execute_query(query, query_info)
+    print("Settings Sent")

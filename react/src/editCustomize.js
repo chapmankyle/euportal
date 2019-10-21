@@ -4,15 +4,10 @@ import {
   Tab,
   Container,
   Row,
-  Jumbotron,
   Card,
   Col,
   Button,
-  InputGroup,
-  Image,
-  FormControl,
-  DropdownButton,
-  Dropdown
+  InputGroup
 } from "react-bootstrap/";
 import Img from 'react-image';
 import { SliderPicker } from 'react-color';

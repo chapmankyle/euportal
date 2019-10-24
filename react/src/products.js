@@ -15,19 +15,52 @@ export default class Products extends Component {
   componentWillMount() {
     // UNSAFE_Currently
     // TODO: add to store instead
-    fetch("/api/products")
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          products: res
+    let search_term = this.props.match.params.search;
+
+    if (search_term) {
+      try {
+        fetch("/api/search/" + search_term)
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+              products: data
+            })
+          });
+      } catch (e) {
+        alert(e.message);
+      }
+    } else {
+      fetch("/api/products")
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            products: res
+          });
         });
-      });
+    }
   }
 
   render() {
     const products = this.state.products;
     // Need to check if user is admin -- If admin then show additional options
     const admin = window.location.pathname !== "/products";
+
+    const search = () => {
+      // searchTerm
+      console.log("Searching " + this.state.search_term + "!!")
+      try {
+        fetch("/api/search/" + this.state.search_term)
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+              products: data
+            })
+          });
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
 
     return (
       <div>

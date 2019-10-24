@@ -69,12 +69,11 @@ def delete_customer(session):
 	print("Deleting customer data from db")
 	return jsonify(db.delete_customer(session))
 
-
-@app.route("/api/delete_product/<product_id>")
-def delete_product(product_id):
-	""" Deletes a product, returns Boolean """
-	print("Deleting product data from db")
-	return jsonify(db.delete_product(product_id))
+@app.route("/api/search/<search_term>")
+def search(search_term):
+	""" Search for products, returns a list of products """
+	print("Searching for " + search_term)
+	return jsonify(db.search(search_term))
 
 if __name__ == "__main__":
 	"""Run server in debug mode."""

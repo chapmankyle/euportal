@@ -182,3 +182,10 @@ def delete_product(name):
     query_info = (name)
     execute_query(query, query_info)
     print("Deleted product")
+
+def search(searchTerm):
+    query = ('SELECT * FROM dummy.products where name like "%' + searchTerm + '%"');
+    query_info = searchTerm
+    data = execute_query(query, query_info, True)
+    print(data)
+    return data

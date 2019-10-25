@@ -1,0 +1,6 @@
+language: python
+jobs:
+  include:
+    - stage: "Tests"                # naming the Tests stage
+      name: "Build test"            # names the first Tests stage job
+      script: ./build.sh

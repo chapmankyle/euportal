@@ -14,13 +14,15 @@ class Customize extends React.Component {
     super(props);
     this.state = {
       theme: {
-        primary: `#${props.theme.primary.toLowerCase()}`,
-        secondary: `#${props.theme.secondary.toLowerCase()}`,
-        tertiary: `#${props.theme.tertiary.toLowerCase()}`,
-        aboutus: `#${props.theme.about_us.toLowerCase()}`,
+        primary: `#${props.theme.primary.toUpperCase()}`,
+        secondary: `#${props.theme.secondary.toUpperCase()}`,
+        tertiary: `#${props.theme.tertiary.toUpperCase()}`,
+        aboutus: `#${props.theme.about_us.toUpperCase()}`,
       }
     };
   }
+
+
   handleChangeComplete = (color) => {
     this.setState({ background: color.hex });
   };
@@ -60,16 +62,17 @@ function LookAndFeel(props) {
   return (
     <Col>
       <h2>Look and Feel</h2>
+      <br />
       <h6>Primary Color</h6>
       {props.theme.primary}
-      <br />
+      <br /><br />
       <h6>Secondary Color</h6>
       {props.theme.secondary}
-      <br />
+      <br /><br />
       <h6>Accent Color</h6>
       {props.theme.tertiary}
       <br /><br />
-      <ModalButton buttonName="Edit Look and Feel" title="Edit Look and Feel" 
+      <ModalButton buttonName="Edit Look and Feel" title="Edit Look and Feel"
       body={<EditCustomize updateTheme={props.updateTheme} theme={props.theme} />} />
     </Col>
   );
@@ -79,6 +82,7 @@ function Logo() {
   return (
     <Col>
       <h2>Your Logo</h2>
+      <br />
       <Img className="logoImg" src={logo} /><br /><br />
     </Col>
   );
@@ -141,4 +145,3 @@ export default connect(
   mapStateToProps,
   matchDispatchToProps
 )(Customize);
-

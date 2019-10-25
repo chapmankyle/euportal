@@ -1,10 +1,11 @@
 import React from 'react';
-import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button } from 'react-bootstrap/';
+import { Tabs, Tab, Container, Row, Jumbotron, Card, Col, Button, FormControl, FormLabel, FormGroup } from 'react-bootstrap/';
 import Img from 'react-image';
 import profile from './images/profile.png';
 import './css/App.css';
-import { ModalButton } from './templates';
+import { ModalButton, PaymentCard } from './templates';
 import EditProfile from './editProfile';
+import cookies from './cookiestore';
 
 class Profile extends React.Component {
 
@@ -13,24 +14,20 @@ class Profile extends React.Component {
     this.state = {
       firstname: "",
       surname: "",
-      password: "",
-      email: "",
-      session: "jrod3627653723243"
+      email: ""
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     try {
-      fetch("/api/get_customer/" + this.state.session)
+      fetch(`/api/get_customer/${cookies.get('session')}`)
         .then(response => response.json())
         .then(data => {
-          console.log(data[0][1])
+          console.log(data)
           this.setState({
-            firstname: data[0][1],
-            surname: data[0][2],
-            password: data[0][4],
-            email: data[0][3],
-            session: data[0][5]
+            firstname: data[1],
+            surname: data[2],
+            email: data[4]
           })
         });
     } catch (e) {
@@ -87,8 +84,10 @@ class Profile extends React.Component {
                         <h1>You have no past transactions</h1>
                         <p> When you buy products they will get listed here for you to view!</p>
                       </Jumbotron>
-                    </Card>                  </Tab>
+                    </Card>                  
+                    </Tab>
                 </Tabs>
+                <PaymentCard />
               </div>
             </Col>
           </Row>

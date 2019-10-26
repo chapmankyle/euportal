@@ -18,7 +18,11 @@ import Register from "./register";
 import SingleProduct from "./singleProduct";
 import cookies from "./cookiestore";
 
-import "./css/App.css"
+import "./css/App.css";
+
+import { connect } from 'react-redux';
+import { getTheme } from './actions/theme';
+import { bindActionCreators } from "redux";
 
 class App extends Component {
 
@@ -36,17 +40,17 @@ class App extends Component {
     }
     return (
       <>
-        <div className="App">
-          <Layout search={search} />
-        </div>
+      <div className="App">
+        <Layout getTheme={this.props.getTheme} search={search}/>
+      </div>
       </>
     );
   }
 }
 
 function Layout(props) {
-  var isLoggedin = true;
-  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "") {
+  let isLoggedin = true;
+  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === ""){
     isLoggedin = false;
   }
 
@@ -157,6 +161,21 @@ function Foot() {
 
 function Logout() {
   cookies.set("session", "", { path: "/" });
+  window.location = '/login';
 }
 
-export default App;
+
+function mapStateToProps(state) {
+  return {
+    theme: state.theme
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ getTheme }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  matchDispatchToProps
+)(App);

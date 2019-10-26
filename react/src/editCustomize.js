@@ -4,17 +4,13 @@ import {
   Tab,
   Container,
   Row,
-  Jumbotron,
   Card,
   Col,
   Button,
-  InputGroup,
-  Image,
-  FormControl,
-  DropdownButton,
-  Dropdown
+  InputGroup
 } from "react-bootstrap/";
 import Img from 'react-image';
+import { SliderPicker } from 'react-color';
 
 import logo from "./images/react.png";
 import "./css/App.css";
@@ -23,9 +19,9 @@ class EditCustomize extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      primaryColor: "Dark Gray",
-      secondaryColor: "Light Blue/Gray",
-      accentColor: "Light Blue",
+      primaryColor: props.theme.primary,
+      secondaryColor: props.theme.secondary,
+      tertiaryColour: props.theme.tertiary,
       logo: "./images/react.png"
     };
   }
@@ -48,55 +44,29 @@ class EditCustomize extends React.Component {
                   <Card>
                     <Card.Body>
                       <Row>
-                        <Img class="logoImg" src={logo} />
+                        <Img className="logoImg" src={logo} />
+                         <input style={{display: 'none'}} type="file" id='fileUpload' />
                         <InputGroup size="md" className="mb-3">
-                          <Button variant="info" onClick={updateState}>
+                          <Button variant="info" onClick={() => document.getElementById("fileUpload").click()}>
                             Change
                           </Button>
-                        </InputGroup>                        <br />
-                        <InputGroup size="md" className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-lg">
-                              Primary Color
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <FormControl
-                            id="name"
-                            aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm"
-                            value={this.state.primaryColor}
-                            onChange={updateState}
-                          />
-                        </InputGroup>
-                        <InputGroup size="md" className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-lg">
-                            Secondary Color
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <FormControl
-                            id="surname"
-                            aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm"
-                            value={this.state.secondaryColor}
-                            onChange={updateState}
-                          />
-                        </InputGroup>
-                        <InputGroup size="md" className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroup-sizing-lg">
-                              Accent Color
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <FormControl
-                            id="email"
-                            aria-label="Small"
-                            aria-describedby="inputGroup-sizing-sm"
-                            value={this.state.accentColor}
-                            onChange={updateState}
-                          />
-                        </InputGroup>
+                        </InputGroup>  
                       </Row>
+                        <br />
+                        <h4>Primary</h4>
+                          <SliderPicker onChangeComplete={colour => this.setState({primaryColour: colour.hex})}
+                            color={this.state.primaryColor}
+                           />
+                           <br />
+                        
+                        <h4>Secondary</h4>
+                          <SliderPicker onChangeComplete={colour => this.setState({secondaryColour: colour.hex})}
+                            color={this.state.secondaryColor}
+                           />
+                        <h4>Tertiary</h4>
+                          <SliderPicker onChangeComplete={colour => this.setState({tertiaryColour: colour.hex})}
+                            color={this.state.tertiaryColour}
+                           />
                     </Card.Body>
                   </Card>
                 </Tab>

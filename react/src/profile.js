@@ -12,15 +12,22 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       firstname: "",
       surname: "",
-      email: ""
+      email: "",
+      password: "",
+      session: ""
     };
   }
 
-  componentWillMount() {
-    try {
-      fetch(`/api/get_customer/${cookies.get('session')}`)
+  UNSAFE_componentWillMount() {
+    if (!cookies.get("session")){
+      this.props.history.push('/login');
+      return;
+    }
+     try {
+       fetch(`/api/get_customer/${cookies.get('session')}`)
         .then(response => response.json())
         .then(data => {
           console.log(data)
@@ -74,7 +81,14 @@ class Profile extends React.Component {
                             <br />
                           </Col>
                         </Row>
-                        <ModalButton buttonName="Edit Details" title="Edit Details" body={<EditProfile firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session}/>} />
+                        <ModalButton buttonName="Edit Details" title="Edit Details" 
+                          body={
+                            <EditProfile firstname={this.state.firstname} 
+                              surname={this.state.surname} password={this.state.password} 
+                              email={this.state.email} session={this.state.session}
+                            />
+                          }
+                        />
                       </Card.Body>
                     </Card>
                   </Tab>
@@ -87,7 +101,7 @@ class Profile extends React.Component {
                     </Card>                  
                     </Tab>
                 </Tabs>
-                <PaymentCard />
+                {/* <PaymentCard /> */}
               </div>
             </Col>
           </Row>

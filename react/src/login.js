@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import './css/App.css';
 import "./css/login.css";
+import cookies from "./cookiestore";
 
 export default class Login extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      session: ""
     };
   }
 
@@ -25,13 +27,46 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    fetch(`/api/login/${this.state.email};${this.state.password}`)
+    .then(response => response.text())
+    .then((text) => {
+      if (text === ""){
+        alert("Email/Password incorrect, please try again");
+      } else {
+        this.setState({session: text});
+        cookies.set("session", text);
+      }
+    })
+    .then(() => { 
+      fetch(`/api/check_if_admin/${this.state.session}`)
+      .then(response => response.json())
+      .then(text => {
+        console.log(text);
+        // if (text === ""){
+        //   cookies.set("user_type", "normal");
+        // } else {
+        //   cookies.set("user_type", text);
+        // }
+        // this.props.history.push('/profile');
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+  UNSAFE_componentWillMount() {
+    if (!(cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "")){
+      this.props.history.push('/profile');
+    }
   }
 
   render() {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email">
             <FormLabel>Email</FormLabel>
             <FormControl
               autoFocus
@@ -40,7 +75,7 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password">
             <FormLabel>Password</FormLabel>
             <FormControl
               value={this.state.password}
@@ -50,7 +85,6 @@ export default class Login extends Component {
           </FormGroup>
           <Button
             block
-            bsSize="large"
             disabled={!this.validateForm()}
             type="submit">
             Login

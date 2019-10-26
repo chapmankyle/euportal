@@ -69,3 +69,23 @@ footer {
 h1 {
   margin-top: 5px;
 }
+
+.logoImg {
+  width: 6rem;
+  height: 6rem;
+}
+
+.searchBar {
+  margin-left: 130px;
+}
+
+a .linkmr-4{
+  min-width: 100px;
+  color: aqua;
+  margin: 10px;
+}
+.box {
+  width: 20px;
+  height: 20px;
+  border-color: black;
+}

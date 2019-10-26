@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import { BrowserRouter as Router, Route, NavLink, Switch, Redirect, withRouter} from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button, InputGroup } from 'react-bootstrap/';
-import { ModalButton, PaymentCard, ItemCard} from './templates';
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect, withRouter } from "react-router-dom";
+import { Navbar, Nav, Form, FormControl, Button, InputGroup, FormGroup, FormLabel } from 'react-bootstrap/';
+import { ModalButton, PaymentCard, ItemCard } from './templates';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -29,8 +29,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search_term: "Bose",
-      products: []
+      search_term: "",
+      products: [],
+      session: ""
     };
   }
 
@@ -40,9 +41,9 @@ class App extends Component {
     }
     return (
       <>
-      <div className="App">
-        <Layout getTheme={this.props.getTheme} search={search}/>
-      </div>
+        <div className="App">
+          <Layout getTheme={this.props.getTheme} search={search} />
+        </div>
       </>
     );
   }
@@ -50,7 +51,7 @@ class App extends Component {
 
 function Layout(props) {
   let isLoggedin = true;
-  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === ""){
+  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "") {
     isLoggedin = false;
   }
 
@@ -91,23 +92,14 @@ function Layout(props) {
                 <NavLink className="linkmr-4" to="/products">
                   <i className="fas fa-box-open"></i>&nbsp; Products
                 </NavLink>
-                <NavLink className="linkmr-4" to="/customize">
-                  <i className="fas fa-wrench"></i>&nbsp; Customize
-                </NavLink>
               </Nav>
-              {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" /> */}
-              <InputGroup size="md" className="searchBar" >
-                <InputGroup.Prepend>
-                  <FormControl
-                    id="name"
-                    aria-label="Small"
-                    aria-describedby="inputGroup-sizing-sm"
-                    value="Search"
-                    onChange={handleState}
-                    className="searchBar"
-                  />
-                </InputGroup.Prepend>
-              </InputGroup>
+              <FormGroup controlId="price" bsSize="large">
+                <FormControl
+                  id="0"
+                  value="Search"
+                  onChange={handleState}
+                />
+              </FormGroup>
               <Button variant="outline-info" onClick={props.search}>Search</Button>
               <Nav className="push-right">
                 <NavLink className="link ml-4" to="/checkout">

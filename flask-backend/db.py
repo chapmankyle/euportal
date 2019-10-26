@@ -28,6 +28,7 @@ def execute_query(query, query_info, return_data=False):
     """Executes a query into the database."""
     data = None
     cursor = connection.cursor(buffered=True)
+    print(query)
     cursor.execute(query, query_info)
     if return_data:
         data = cursor.fetchall()
@@ -37,33 +38,34 @@ def execute_query(query, query_info, return_data=False):
 
 
 def login_user(email, password):
-    query = (
-        "SELECT session_id, password FROM customers WHERE email=\"%s\"" % email)
+    query = ('SELECT session_id, password FROM dummy.customers WHERE email like "' + email + '"')
     query_info = email
     session = execute_query(query, query_info, True)
-    if (session == []):
-        query = (
-            "SELECT session_id, password FROM staff WHERE email=\"%s\"" % email)
+    
+    if (len(session) == 0):
+        query = ('SELECT session_id, password FROM dummy.staff WHERE email="%s"')
         query_info = email
         session = execute_query(query, query_info, True)
-        if (session == []):
+
+        if (len(session) == 0):
             return ""
-        if (get_password_verification(session[0][1], password)):
-            return session[0][0]
-        return ""
-    if (get_password_verification(session[0][1], password)):
+       
+    if (session[0][1] == password):
         return session[0][0]
     return ""
 
 
 def check_if_admin(session):
+    print(session)
     query = (
-        "SELECT * FROM staff WHERE session_id=%s" % session)
+        'SELECT * FROM staff WHERE session_id="%s"')
     query_info = (session)
     result = execute_query(query, query_info, True)
     if (result == []):
-        return "False"
-    return "True"
+        print("F")
+        return False
+    print("T")
+    return True
 
 
 def register_staff(name, password, email, _type):
@@ -100,10 +102,10 @@ def add_product(name, description, price, stock):
 
 def get_customer(session):
     """Gets a customer from the database using the session ID."""
-    query = ("SELECT * FROM customers WHERE session_id like \"%s\"" % session)
+    query = ('SELECT * FROM customers WHERE session_id like "' + session + '"')
     query_info = session
     data = execute_query(query, query_info, True)
-    print("Getting Customer")
+    print("data" , data)
     if data:
         return data[0]
     else:

@@ -28,7 +28,6 @@ export default class Products extends Component {
         alert(e.message);
       }
     } else {
-      // TODO: add to store instead
       fetch("/api/products")
         .then(res => res.json())
         .then(res => {

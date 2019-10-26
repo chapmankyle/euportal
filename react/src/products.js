@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Jumbotron, Button, CardDeck } from 'react-bootstrap/';
+import { Container, Jumbotron, Button, CardDeck, Col, Row} from 'react-bootstrap/';
 import './css/products.css';
 import { ItemCard, ModalButton } from './templates'
 import AddProduct from './addProduct';
@@ -8,7 +8,9 @@ export default class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      about: "",
       products: []
+
     };
   }
 
@@ -16,6 +18,19 @@ export default class Products extends Component {
     // UNSAFE_Currently
     // TODO: add to store instead
     let search_term = this.props.match.params.search;
+
+    try {
+      fetch("/api/pageinfo")
+      .then(res => res.json())
+              .then(res => {
+                this.setState({
+                  about: res
+                });
+              });
+    }
+    catch (e) {
+      alert(e.message);
+    }
 
     if (search_term) {
       try {
@@ -41,7 +56,9 @@ export default class Products extends Component {
   }
 
   render() {
+    const about = this.state.about;
     const products = this.state.products;
+
     // Need to check if user is admin -- If admin then show additional options
     const admin = window.location.pathname !== "/products";
 
@@ -66,12 +83,10 @@ export default class Products extends Component {
       <div>
         <Jumbotron>
           <Container>
-            <h1>Shop Banner!</h1>
+            <h1>Welcome</h1>
             <p>
-              This is my store, thank you for shopping with us!
-                    <br />
-              You can contact me on: 123-456-7890
-                  </p>
+              {about}
+            </p>
             {admin ? (
               <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session} />} />
             ) : null}
@@ -79,13 +94,15 @@ export default class Products extends Component {
           </Container>
         </Jumbotron>
         <Container>
-          <CardDeck>
+          <Row display="flex" flex-wrap="wrap">
             {products.length > 0 ? products.map(item => (
+              <Col lg="4" md="4" sm="12">
               <ItemCard id={item[0]} name={item[1]} text={item[2]} price={item[3]}
                 admin={admin} push={this.props.history.push}
               />
+              </Col>
             )) : <h3>No Products Found</h3>}
-          </CardDeck>
+          </Row>
         </Container>
       </div>
     );

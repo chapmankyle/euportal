@@ -4,6 +4,10 @@ import db
 
 app = Flask("__main__")
 
+@app.route("/api/page_info")
+def get_page_info():
+	"""Return page info to be displayed"""
+	return jsonify(db.get_page_info())
 
 @app.route("/api/products")
 def get_all_products():

@@ -23,7 +23,6 @@ def generate_session_id(name):
     """Generates a random session ID using a name and the current time."""
     return name + str(int(round(time.time() * 1000)))
 
-
 def execute_query(query, query_info, return_data=False):
     """Executes a query into the database."""
     data = None
@@ -107,6 +106,18 @@ def get_customer(session):
     if data:
         return data[0]
     else:
+        return False
+
+def get_page_info():
+    query = ("SELECT about_us FROM settings")
+    query_info = ()
+    data = execute_query(query, query_info, True)
+    print("Getting Products")
+    if data:
+        print(data)
+        return data
+    else:
+        print("werk nie")
         return False
 
 

@@ -8,7 +8,9 @@ export default class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      about: "",
       products: []
+
     };
   }
 
@@ -40,7 +42,9 @@ export default class Products extends Component {
   }
 
   render() {
+    const about = this.state.about;
     const products = this.state.products;
+
     // Need to check if user is admin -- If admin then show additional options
     const admin = window.location.pathname !== "/products";
 

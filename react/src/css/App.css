@@ -84,3 +84,8 @@ a .linkmr-4{
   color: aqua;
   margin: 10px;
 }
+.box {
+  width: 20px;
+  height: 20px;
+  border-color: black;
+}

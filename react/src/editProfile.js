@@ -4,7 +4,6 @@ import {
   Tab,
   Container,
   Row,
-  Jumbotron,
   Card,
   Col,
   Button,
@@ -58,12 +57,12 @@ class EditProfile extends React.Component {
       console.log(this.state);
 
       try {
-        fetch("/api/update_customer/" + this.state.name + ";" + this.state.surname + ";" + 
+        fetch("/api/update_customer/" + this.state.name + ";" + this.state.surname + ";" +
         this.state.password + ";" + this.state.email + ";" + this.state.session ).then(() => window.location.reload())
       } catch (e) {
         alert(e.message);
       }
-      
+
     };
 
     const updateBank = e => {
@@ -121,7 +120,7 @@ class EditProfile extends React.Component {
                         <InputGroup size="md" className="mb-3">
                           <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-sizing-lg">
-                              Email
+                              Email Address
                             </InputGroup.Text>
                           </InputGroup.Prepend>
                           <FormControl
@@ -178,7 +177,7 @@ class EditProfile extends React.Component {
                           <InputGroup size="md" className="mb-3">
                             <InputGroup.Prepend>
                               <InputGroup.Text id="inputGroup-sizing-lg">
-                                Branch code
+                                Branch Code
                               </InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl

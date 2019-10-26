@@ -1,20 +1,12 @@
 import React from "react";
 import {
-  Tabs,
-  Tab,
   Container,
-  Row,
-  Jumbotron,
   Card,
-  Col,
   Button,
   FormGroup,
   Image,
   FormControl,
   FormLabel,
-  DropdownButton,
-  Dropdown,
-  ButtonGroup
 } from "react-bootstrap/";
 import profile from "./images/profile.png";
 import "./css/App.css";
@@ -89,7 +81,7 @@ class EditProfile extends React.Component {
                   />
               </FormGroup>
               <FormGroup controlId="description" bsSize="large">
-                <FormLabel>Discription</FormLabel>
+                <FormLabel>Description</FormLabel>
                 <FormControl
                   as="textarea"
                   id="description"
@@ -106,7 +98,7 @@ class EditProfile extends React.Component {
                   />
               </FormGroup>
               <FormGroup controlId="stock" bsSize="large">
-                <FormLabel>Quantitiy</FormLabel>
+                <FormLabel>Quantity</FormLabel>
                 <FormControl
                   id="stock"
                   value={this.state.stock}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Modal, ButtonGroup} from 'react-bootstrap/';
+import { Card, Button, Modal, ButtonGroup,FormControl, FormLabel, FormGroup} from 'react-bootstrap/';
 import './css/App.css';
 
 function ItemCard(props) {
@@ -30,7 +30,7 @@ function ServiceCard(props) {
             <Card.Title ><strong>{props.name}</strong></Card.Title>
             <Card.Text className="card-text">{props.text}</Card.Text>
             <>
-            {/* TODO: Move to different file as the onclick handle break it */}
+            <Button onClick={() => props.addCart(props.item)}>Request a Quote</Button>
             {props.admin ? (
                 <>
                 <Button>Edit</Button> <Button>Delete</Button>
@@ -42,6 +42,29 @@ function ServiceCard(props) {
 
   );
 }
+
+function PaymentCard(props) {
+  return (
+  <Card className="shadow trans mt-0" onClick={() => (props.push(`/products/${props.id}`))}>
+          <Card.Img variant="top" src="../static/images/logo.png" alt="logo" />
+          <Card.Body>
+            <Card.Title ><strong>Payment</strong></Card.Title>
+            <Card.Text className="card-text">{props.text}</Card.Text>
+            <FormGroup controlId="name" bsSize="large">
+                <FormLabel>Title</FormLabel>
+                <FormControl
+                  id="name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  />
+              </FormGroup>
+          </Card.Body>
+        </Card>
+
+  );
+}
+
+
 
 function ModalButton(props) {
   const [show, setShow] = useState(false);
@@ -63,4 +86,4 @@ function ModalButton(props) {
 }
 
 
-export { ItemCard, ServiceCard, ModalButton };
+export { ItemCard, ServiceCard, ModalButton, PaymentCard };

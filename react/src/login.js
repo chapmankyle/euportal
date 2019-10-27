@@ -29,36 +29,49 @@ export default class Login extends Component {
     event.preventDefault();
 
     fetch(`/api/login/${this.state.email};${this.state.password}`)
-    .then(response => response.text())
-    .then((text) => {
-      if (text === ""){
-        alert("Email/Password incorrect, please try again");
-      } else {
-        this.setState({session: text});
-        cookies.set("session", text);
-      }
-    })
-    .then(() => { 
-      fetch(`/api/check_if_admin/${this.state.session}`)
       .then(response => response.json())
-      .then(text => {
-        console.log(text);
-        // if (text === ""){
-        //   cookies.set("user_type", "normal");
-        // } else {
-        //   cookies.set("user_type", text);
-        // }
-        // this.props.history.push('/profile');
+      .then(data => {
+        console.log(data)
+        if (data === "") {
+          alert("Email/Password incorrect, please try again");
+        } else {
+          this.setState({ session: data });
+          cookies.set("session", data);
+        }
+      })
+      .then(() => {
+        fetch(`/api/check_if_admin/${this.state.session}`)
+          .then(response => {
+            console.log(response)
+            response.json()
+          })
+          .then(data => {
+            console.log(data);
+            if (data === "") {
+              cookies.set("user_type", "normal");
+              cookies.set("session", this.state.session)
+            } else {
+              cookies.set("user_type", data);
+              cookies.set("session", this.state.session)
+            }
+
+            let currentSession = cookies.get('user_type');
+            if (!(this.state.session == currentSession)) {
+              this.setState({
+                session: currentSession
+              });
+              this.props.history.push('/products');
+            }
+          });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
-    });
   }
 
   UNSAFE_componentWillMount() {
-    if (!(cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "")){
-      this.props.history.push('/profile');
+    if (!(cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "")) {
+      this.props.history.push('/products');
     }
   }
 

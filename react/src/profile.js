@@ -21,25 +21,27 @@ class Profile extends React.Component {
     };
   }
 
-  UNSAFE_componentWillMount() {
-    if (!cookies.get("session")){
+  componentWillMount() {
+    if (!cookies.get("session")) {
       this.props.history.push('/login');
       return;
     }
-     try {
-       fetch(`/api/get_customer/${cookies.get('session')}`)
+    try {
+      fetch(`/api/get_customer/${cookies.get('session')}`)
         .then(response => response.json())
         .then(data => {
           console.log(data)
           this.setState({
             firstname: data[1],
             surname: data[2],
-            email: data[4]
+            email: data[4],
+            session: cookies.get("session")
           })
         });
     } catch (e) {
       alert(e.message);
     }
+
   }
 
   render() {
@@ -81,10 +83,10 @@ class Profile extends React.Component {
                             <br />
                           </Col>
                         </Row>
-                        <ModalButton buttonName="Edit Details" title="Edit Details" 
+                        <ModalButton buttonName="Edit Details" title="Edit Details"
                           body={
-                            <EditProfile firstname={this.state.firstname} 
-                              surname={this.state.surname} password={this.state.password} 
+                            <EditProfile firstname={this.state.firstname}
+                              surname={this.state.surname} password={this.state.password}
                               email={this.state.email} session={this.state.session}
                             />
                           }
@@ -98,8 +100,8 @@ class Profile extends React.Component {
                         <h1>You have no past transactions</h1>
                         <p> When you buy products they will get listed here for you to view!</p>
                       </Jumbotron>
-                    </Card>                  
-                    </Tab>
+                    </Card>
+                  </Tab>
                 </Tabs>
                 {/* <PaymentCard /> */}
               </div>

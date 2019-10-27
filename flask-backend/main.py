@@ -49,13 +49,14 @@ def register_staff(name, password, email, _type):
 @app.route("/api/check_if_admin/<session>")
 def check_if_admin(session):
     """ Checks if the session belongs to a staff member """
-    return db.check_if_admin(session)
+	
+    return jsonify(db.check_if_admin(session))
 
 
 @app.route("/api/login/<email>;<password>")
 def login_user(email, password):
     """ Logs a user in by returning the session ID """
-    return db.login_user(email, password)
+    return jsonify(db.login_user(email, password))
 
 
 @app.route("/api/get_customer/<session>")

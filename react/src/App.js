@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import { BrowserRouter as Router, Route, NavLink, Switch, Redirect, withRouter} from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button, InputGroup } from 'react-bootstrap/';
-import { ModalButton, PaymentCard, ItemCard} from './templates';
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect, withRouter } from "react-router-dom";
+import { Navbar, Nav, Form, FormControl, Button, InputGroup, FormGroup, FormLabel } from 'react-bootstrap/';
+import { ModalButton, PaymentCard, ItemCard } from './templates';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -29,37 +29,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search_term: "Bose",
-      products: []
+      search_term: "",
+      products: [],
+      session: ""
     };
   }
 
   render() {
     const search = () => {
-      window.location.assign('/products/' + this.state.search_term);
+      window.location.replace('/products/search/' + this.state.search_term)
     }
+
+    const handleState = event => {
+      this.setState({
+        [event.target.id]: event.target.value
+      });
+    }
+
     return (
       <>
-      <div className="App">
-        <Layout getTheme={this.props.getTheme} search={search}/>
-      </div>
+        <div className="App">
+          <Layout getTheme={this.props.getTheme} search={search} handleState={handleState}/>
+        </div>
       </>
     );
   }
 }
 
 function Layout(props) {
+
   let isLoggedin = true;
-  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === ""){
+  if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "") {
     isLoggedin = false;
   }
-
-  const handleState = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
 
   return (
     <Router>
@@ -87,28 +89,23 @@ function Layout(props) {
                   </NavLink>
                   </Nav>
                 )}
+
               <Nav className="mr-auto push-right">
                 <NavLink className="linkmr-4" to="/products">
                   <i className="fas fa-box-open"></i>&nbsp; Products
                 </NavLink>
-                <NavLink className="linkmr-4" to="/customize">
-                  <i className="fas fa-wrench"></i>&nbsp; Customize
-                </NavLink>
               </Nav>
-              {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" /> */}
-              <InputGroup size="md" className="searchBar" >
-                <InputGroup.Prepend>
-                  <FormControl
-                    id="name"
-                    aria-label="Small"
-                    aria-describedby="inputGroup-sizing-sm"
-                    value="Search"
-                    onChange={handleState}
-                    className="searchBar"
-                  />
-                </InputGroup.Prepend>
-              </InputGroup>
-              <Button variant="outline-info" onClick={props.search}>Search</Button>
+
+              <FormGroup controlId="search_term">
+                <FormControl
+                  autoFocus
+                  type="search_term"
+                  onChange={props.handleState}
+                />
+              </FormGroup>
+              <Button type="button" variant="outline-info" onClick={props.search}>Search</Button>
+
+
               <Nav className="push-right">
                 <NavLink className="link ml-4" to="/checkout">
                   <i className="fas fa-shopping-cart"></i>&nbsp; Cart
@@ -127,7 +124,7 @@ function Layout(props) {
             <Route path="/customize" component={Customize} />
             <Route path="/checkout" component={Checkout} />
             <Route exact path="/products" component={Products} />
-            <Route exact path="/products/:search" component={Products} />
+            <Route exact path="/products/search/:search" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
@@ -167,7 +164,7 @@ function Logout() {
 
 function mapStateToProps(state) {
   return {
-    theme: state.theme
+    theme: state.theme,
   };
 }
 

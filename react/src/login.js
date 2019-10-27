@@ -60,7 +60,7 @@ export default class Login extends Component {
               this.setState({
                 session: currentSession
               });
-              this.props.history.push('/profile');
+              this.props.history.push('/products');
             }
           });
       })
@@ -71,7 +71,7 @@ export default class Login extends Component {
 
   UNSAFE_componentWillMount() {
     if (!(cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "")) {
-      this.props.history.push('/profile/');
+      this.props.history.push('/products');
     }
   }
 

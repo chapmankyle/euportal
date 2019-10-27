@@ -37,12 +37,19 @@ class App extends Component {
 
   render() {
     const search = () => {
-      window.location.assign('/products/' + this.state.search_term);
+      window.location.replace('/products/search/' + this.state.search_term)
     }
+
+    const handleState = event => {
+      this.setState({
+        [event.target.id]: event.target.value
+      });
+    }
+
     return (
       <>
         <div className="App">
-          <Layout getTheme={this.props.getTheme} search={search} />
+          <Layout getTheme={this.props.getTheme} search={search} handleState={handleState}/>
         </div>
       </>
     );
@@ -50,17 +57,11 @@ class App extends Component {
 }
 
 function Layout(props) {
+
   let isLoggedin = true;
   if (cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "") {
     isLoggedin = false;
   }
-
-  const handleState = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
 
   return (
     <Router>
@@ -88,19 +89,23 @@ function Layout(props) {
                   </NavLink>
                   </Nav>
                 )}
+
               <Nav className="mr-auto push-right">
                 <NavLink className="linkmr-4" to="/products">
                   <i className="fas fa-box-open"></i>&nbsp; Products
                 </NavLink>
               </Nav>
-              <FormGroup controlId="price" bsSize="large">
+
+              <FormGroup controlId="search_term">
                 <FormControl
-                  id="0"
-                  value="Search"
-                  onChange={handleState}
+                  autoFocus
+                  type="search_term"
+                  onChange={props.handleState}
                 />
               </FormGroup>
-              <Button variant="outline-info" onClick={props.search}>Search</Button>
+              <Button type="button" variant="outline-info" onClick={props.search}>Search</Button>
+
+
               <Nav className="push-right">
                 <NavLink className="link ml-4" to="/checkout">
                   <i className="fas fa-shopping-cart"></i>&nbsp; Cart
@@ -119,7 +124,7 @@ function Layout(props) {
             <Route path="/customize" component={Customize} />
             <Route path="/checkout" component={Checkout} />
             <Route exact path="/products" component={Products} />
-            <Route exact path="/products/:search" component={Products} />
+            <Route exact path="/products/search/:search" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
@@ -159,7 +164,7 @@ function Logout() {
 
 function mapStateToProps(state) {
   return {
-    theme: state.theme
+    theme: state.theme,
   };
 }
 

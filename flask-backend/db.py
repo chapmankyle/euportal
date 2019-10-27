@@ -41,12 +41,10 @@ def login_user(email, password):
     query = ('SELECT session_id, password FROM dummy.customers WHERE email like "' + email + '"')
     query_info = email
     session = execute_query(query, query_info, True)
-    
     if (len(session) == 0):
-        query = ('SELECT session_id, password FROM dummy.staff WHERE email="%s"')
+        query = ('SELECT session_id, password FROM dummy.staff WHERE email like "' + email + '"')
         query_info = email
         session = execute_query(query, query_info, True)
-
         if (len(session) == 0):
             return ""
        

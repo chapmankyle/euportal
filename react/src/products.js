@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Jumbotron, Button, CardDeck, Col, Row} from 'react-bootstrap/';
+import { Container, Jumbotron, Button, CardDeck, Col, Row } from 'react-bootstrap/';
 import './css/products.css';
 import { ItemCard, ModalButton } from './templates'
 import AddProduct from './addProduct';
@@ -15,36 +15,22 @@ export default class Products extends Component {
   }
 
   componentWillMount() {
-    // UNSAFE_Currently
-    // TODO: add to store instead
     let search_term = this.props.match.params.search;
-
-    try {
-      fetch("/api/pageinfo")
-      .then(res => res.json())
-              .then(res => {
-                this.setState({
-                  about: res
-                });
-              });
-    }
-    catch (e) {
-      alert(e.message);
-    }
-
+    
     if (search_term) {
       try {
         fetch("/api/search/" + search_term)
-          .then(response => response.json())
-          .then(data => {
-            this.setState({
-              products: data
-            })
-          });
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            products: data
+          })
+        });
       } catch (e) {
         alert(e.message);
       }
     } else {
+      // TODO: add to store instead
       fetch("/api/products")
         .then(res => res.json())
         .then(res => {
@@ -83,14 +69,17 @@ export default class Products extends Component {
       <div>
         <Jumbotron>
           <Container>
-            <h1>Welcome</h1>
-            <p>
-              {about}
-            </p>
-            {admin ? (
-              <ModalButton buttonName="Add Product" title="Add Product" body={<AddProduct firstname={this.state.firstname} surname={this.state.surname} password={this.state.password} email={this.state.email} session={this.state.session} />} />
-            ) : null}
-
+            <h1>Shop Banner!</h1>
+              <p>
+                This is my store, thank you for shopping with us!
+                <br />
+                You can contact me on: 123-456-7890
+              </p>
+            <ModalButton buttonName="Add Product" title="Add Product" 
+              body={<AddProduct firstname={this.state.firstname} 
+              surname={this.state.surname} password={this.state.password} 
+              email={this.state.email} session={this.state.session}/>} 
+            />
           </Container>
         </Jumbotron>
         <Container>
@@ -101,7 +90,8 @@ export default class Products extends Component {
                 admin={admin} push={this.props.history.push}
               />
               </Col>
-            )) : <h3>No Products Found</h3>}
+              )) : (<h3>No Products Found</h3>)
+            }
           </Row>
         </Container>
       </div>

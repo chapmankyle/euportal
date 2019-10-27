@@ -4,11 +4,19 @@ import './css/App.css';
 
 function ItemCard(props) {
   return (
-      <Card className="shadow trans mt-0" onClick={() => (props.push(`/products/${props.id}`))}>
+      <Card className="shadow trans mt-0" style={{height:"100%"}} onClick={() => (props.push(`/productsgi/${props.id}`))}>
         <Card.Img variant="top" src="../static/images/logo.png" alt="logo" />
-        <Card.Body>
+        <Card.Body className="d-flex flex-column">
           <Card.Title ><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">{props.text}</Card.Text>
+          <>
+          <Button className="mt-auto" onClick={() => props.addCart(props.item)}>Add to cart</Button>
+            {props.admin ? (
+                <ButtonGroup className="float-right">
+                <Button>Edit</Button> <Button>Delete</Button>
+                </ButtonGroup>
+            ) : null}
+          </>
         </Card.Body>
       </Card>
   );
@@ -16,7 +24,7 @@ function ItemCard(props) {
 
 function ServiceCard(props) {
   return (
-  <Card className="shadow trans mt-0" onClick={() => (props.push(`/products/${props.id}`))}>
+  <Card className="mt-0" style={{height:"100%"}} onClick={() => (props.push(`/products/${props.id}`))}>
           <Card.Img variant="top" src="../static/images/logo.png" alt="logo" />
           <Card.Body>
             <Card.Title ><strong>{props.name}</strong></Card.Title>

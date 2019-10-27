@@ -85,11 +85,10 @@ export default class Products extends Component {
         <Container>
           <Row>
             {products.length > 0 ? products.map(item => (
-              <Col md={4} lg={4}>
-                <ItemCard id={item[0]} name={item[1]} text={item[2]} price={item[3]}
-                  admin={false} push={this.props.history.push} 
-                />
-              <br />
+              <Col className="mb-5" lg="4" md="4" sm="12">
+              <ItemCard id={item[0]} name={item[1]} text={item[2]} price={item[3]}
+                admin={admin} push={this.props.history.push}
+              />
               </Col>
               )) : (<h3>No Products Found</h3>)
             }

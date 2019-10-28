@@ -28,7 +28,7 @@ function ItemCard(props) {
             Add to cart
           </Button>
           {props.admin ? (
-            <ButtonGroup className="float-right">
+            <ButtonGroup className="mt-2 float-right">
               <Button>Edit</Button> <Button>Delete</Button>
             </ButtonGroup>
           ) : null}

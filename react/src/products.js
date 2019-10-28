@@ -11,6 +11,7 @@ import {
 import "./css/products.css";
 import { ItemCard, ModalButton } from "./templates";
 import AddProduct from "./addProduct";
+import cookies from "./cookiestore";
 
 export default class Products extends Component {
   constructor(props) {
@@ -18,16 +19,15 @@ export default class Products extends Component {
     this.state = {
       about: "",
       products: [],
-      loading: true
+      loading: true,
+      searchTerm: ""
     };
   }
 
   componentWillMount() {
-    let search_term = this.props.match.params.search;
-
-    if (search_term) {
+    if (this.props.location.search) {
       try {
-        fetch("/api/search/" + search_term)
+        fetch("/api/search/" + this.props.location.search.substring(2))
           .then(response => response.json())
           .then(data => {
             this.setState({
@@ -42,7 +42,6 @@ export default class Products extends Component {
         });
       }
     } else {
-      // TODO: add to store instead
       fetch("/api/products")
         .then(res => res.json())
         .then(res => {
@@ -86,12 +85,11 @@ export default class Products extends Component {
     return (
       <>
         {this.state.loading ? (
-          <Row className="h-100 w-100">
+          <Row className="h-100">
             <Col
               style={{
-                transform: "translate(50%)",
-                marginTop: "auto",
-                marginBottom: "auto"
+                transform: "translate(50%, 0)",
+                margin: "auto"
               }}
             >
               <Spinner animation="grow" /> Loading...
@@ -107,19 +105,24 @@ export default class Products extends Component {
                   <br />
                   You can contact me on: 123-456-7890
                 </p>
-                <ModalButton
-                  buttonName="Add Product"
-                  title="Add Product"
-                  body={
-                    <AddProduct
-                      firstname={this.state.firstname}
-                      surname={this.state.surname}
-                      password={this.state.password}
-                      email={this.state.email}
-                      session={this.state.session}
-                    />
-                  }
-                />
+                {!cookies.get("session") === null ||
+                cookies.get("session") === undefined ||
+                (cookies.get("session") === "" &&
+                  cookies.get("user_type")) ? null : (
+                  <ModalButton
+                    buttonName="Add Product"
+                    title="Add Product"
+                    body={
+                      <AddProduct
+                        firstname={this.state.firstname}
+                        surname={this.state.surname}
+                        password={this.state.password}
+                        email={this.state.email}
+                        session={this.state.session}
+                      />
+                    }
+                  />
+                )}
               </Container>
             </Jumbotron>
             <Container>

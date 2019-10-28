@@ -129,8 +129,9 @@ def get_page_info():
     data = execute_query(query, query_info, True)
     print("Getting Products")
     if data:
-        print(data)
-        return data
+        print('There is data')
+        print(data[0])
+        return data[0]
     else:
         print("werk nie")
         return False

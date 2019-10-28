@@ -117,32 +117,9 @@ class SingleProduct extends React.Component {
             </Jumbotron>
             <Container>
               <Row>
-                <Col lg={7}>
-                  <Card>
-                    <Image
-                      src={image1}
-                      className="mx-auto d-block"
-                      fluid
-                      onClick={() => handleShow(image1)}
-                    />
-                    <div>
-                      <Row>
-                        <Col onClick={() => handleShow(image2)}>
-                          <Image src={image2} fluid />
-                        </Col>
-                        <Col onClick={() => handleShow(image3)}>
-                          <Image src={image3} fluid />
-                        </Col>
-                        <Col onClick={() => handleShow(image4)}>
-                          <Image src={image4} fluid />
-                        </Col>
-                      </Row>
-                    </div>
-                  </Card>
-                </Col>
                 <Col lg={5}>
                   <br />
-                  <h2 className="text-center">Description</h2>
+                  <h2>Description</h2>
                   <p>{product.description}</p>R {product.price}
                   <br />
                   <br />

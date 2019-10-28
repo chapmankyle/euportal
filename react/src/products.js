@@ -99,11 +99,9 @@ export default class Products extends Component {
           <div>
             <Jumbotron>
               <Container>
-                <h1>Shop Banner!</h1>
+                <h1>Welcome!</h1>
                 <p>
-                  This is my store, thank you for shopping with us!
-                  <br />
-                  You can contact me on: 123-456-7890
+                  {this.state.about}
                 </p>
                 {!cookies.get("session") === null ||
                 cookies.get("session") === undefined ||

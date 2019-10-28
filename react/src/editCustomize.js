@@ -9,8 +9,8 @@ import {
   Button,
   InputGroup
 } from "react-bootstrap/";
-import Img from 'react-image';
-import { SliderPicker } from 'react-color';
+import Img from "react-image";
+import { SliderPicker } from "react-color";
 
 import logo from "./images/react.png";
 import "./css/App.css";
@@ -22,15 +22,14 @@ class EditCustomize extends React.Component {
       primaryColor: props.theme.primary,
       secondaryColor: props.theme.secondary,
       tertiaryColour: props.theme.tertiary,
-      logo: "./images/react.png"
+      logo: "./images/react.png",
+      getTheme: props.getTheme
     };
   }
   render() {
     const updateState = e => {
-        this.setState({
-            [e.target.id]: e.target.value
-        });
-        console.log("Updated")
+      // this.state.getTheme);
+      console.log(this.state);
     };
 
     return (
@@ -45,39 +44,52 @@ class EditCustomize extends React.Component {
                     <Card.Body>
                       <Row>
                         <Img className="logoImg" src={logo} />
-                         <input style={{display: 'none'}} type="file" id='fileUpload' />
+                        <input
+                          style={{ display: "none" }}
+                          type="file"
+                          id="fileUpload"
+                        />
                         <InputGroup size="md" className="mb-3">
-                          <Button variant="info" onClick={() => document.getElementById("fileUpload").click()}>
+                          <Button
+                            variant="info"
+                            onClick={() =>
+                              document.getElementById("fileUpload").click()
+                            }
+                          >
                             Change
                           </Button>
-                        </InputGroup>  
+                        </InputGroup>
                       </Row>
-                        <br />
-                        <h4>Primary</h4>
-                          <SliderPicker onChangeComplete={colour => this.setState({primaryColour: colour.hex})}
-                            color={this.state.primaryColor}
-                           />
-                           <br />
-                        
-                        <h4>Secondary</h4>
-                          <SliderPicker onChangeComplete={colour => this.setState({secondaryColour: colour.hex})}
-                            color={this.state.secondaryColor}
-                           />
-                        <h4>Tertiary</h4>
-                          <SliderPicker onChangeComplete={colour => this.setState({tertiaryColour: colour.hex})}
-                            color={this.state.tertiaryColour}
-                           />
+                      <br />
+                      <h4>Primary</h4>
+                      <SliderPicker
+                        onChangeComplete={colour =>
+                          this.setState({ primaryColour: colour.hex })
+                        }
+                        color={this.state.primaryColor}
+                      />
+                      <br />
+
+                      <h4>Secondary</h4>
+                      <SliderPicker
+                        onChangeComplete={colour =>
+                          this.setState({ secondaryColor: colour.hex })
+                        }
+                        color={this.state.secondaryColor}
+                      />
+                      <h4>Tertiary</h4>
+                      <SliderPicker
+                        onChangeComplete={colour =>
+                          this.setState({ tertiaryColour: colour.hex })
+                        }
+                        color={this.state.tertiaryColour}
+                      />
                     </Card.Body>
                   </Card>
                 </Tab>
               </Tabs>
               <br />
               <Button onClick={updateState}>Save Details</Button>
-              <Button
-                onClick={() => this.props.history.goBack()}
-                variant="danger">
-                Discard Changes
-              </Button>
             </Col>
           </Row>
         </Container>

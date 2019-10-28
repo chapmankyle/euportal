@@ -5,10 +5,19 @@ import "./css/checkout.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { removeFromCart } from "./actions/cart";
+import cookies from "./cookiestore";
 
 class Checkout extends React.Component {
   checkout() {
-    console.log("out");
+    if (
+      cookies.get("session") === null ||
+      cookies.get("session") === undefined ||
+      cookies.get("session") === ""
+    ) {
+      alert("Please login first");
+    } else {
+      // Show Payment page
+    }
   }
 
   render() {
@@ -42,7 +51,12 @@ class Checkout extends React.Component {
                       <td>{p.quantity}</td>
                       <td>R {p.product.price}</td>
                       <td>
-                        <Button variant="danger" onClick={() =>  this.props.removeFromCart(p.product.id)}>
+                        <Button
+                          variant="danger"
+                          onClick={() =>
+                            this.props.removeFromCart(p.product.id)
+                          }
+                        >
                           Delete
                         </Button>
                       </td>
@@ -55,7 +69,10 @@ class Checkout extends React.Component {
               <span>
                 R{" "}
                 {this.props.cart.length > 0
-                  ? this.props.cart.reduce((sum, val) => sum + val.product.price * val.quantity, 0)
+                  ? this.props.cart.reduce(
+                      (sum, val) => sum + val.product.price * val.quantity,
+                      0
+                    )
                   : "0"}
               </span>
               <br />

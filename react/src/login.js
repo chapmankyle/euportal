@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import './css/App.css';
+import {
+  Button,
+  FormGroup,
+  FormControl,
+  FormLabel,
+  Spinner
+} from "react-bootstrap";
+import "./css/App.css";
 import "./css/login.css";
 import cookies from "./cookiestore";
 
@@ -11,7 +17,8 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      session: ""
+      session: "",
+      loading: false
     };
   }
 
@@ -23,42 +30,44 @@ export default class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
-
-    fetch(`/api/login/${this.state.email};${this.state.password}`)
-    .then(response => response.text())
-    .then((text) => {
-      if (text === ""){
-        alert("Email/Password incorrect, please try again");
-      } else {
-        this.setState({session: text});
-        cookies.set("session", text);
-      }
-    })
-    .then(() => { 
-      fetch(`/api/check_if_admin/${this.state.session}`)
-      .then(response => response.json())
-      .then(text => {
-        console.log(text);
-        // if (text === ""){
-        //   cookies.set("user_type", "normal");
-        // } else {
-        //   cookies.set("user_type", text);
-        // }
-        // this.props.history.push('/profile');
-      });
-    })
-    .catch(err => {
-      console.log(err);
+    this.setState({
+      loading: true
     });
-  }
+    fetch(`/api/login/${this.state.email};${this.state.password}`)
+      .then(response => response.json())
+      .then(res => {
+        this.setState({
+          loading: false
+        });
+        if (res.state) {
+          cookies.set("session", res.session);
+          cookies.set("user_type", res.admin);
+          this.props.history.push("/profile");
+        } else {
+          alert("Email/Password incorrect, please try again");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          loading: false
+        });
+      });
+  };
 
   UNSAFE_componentWillMount() {
-    if (!(cookies.get("session") === null || cookies.get("session") === undefined || cookies.get("session") === "")){
-      this.props.history.push('/profile');
+    if (
+      !(
+        cookies.get("session") === null ||
+        cookies.get("session") === undefined ||
+        cookies.get("session") === ""
+      )
+    ) {
+      this.props.history.push("/profile");
     }
   }
 
@@ -83,11 +92,21 @@ export default class Login extends Component {
               type="password"
             />
           </FormGroup>
-          <Button
-            block
-            disabled={!this.validateForm()}
-            type="submit">
-            Login
+          <Button block disabled={!this.validateForm()} type="submit">
+            {this.state.loading ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Loading
+              </>
+            ) : (
+              "Login"
+            )}
           </Button>
           <hr />
           <span>

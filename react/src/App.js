@@ -14,7 +14,8 @@ import {
   Form,
   FormControl,
   Button,
-  InputGroup
+  InputGroup,
+  Badge
 } from "react-bootstrap/";
 import { ModalButton, PaymentCard, ItemCard } from "./templates";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -48,7 +49,7 @@ class App extends Component {
 
   render() {
     const search = () => {
-      window.location.assign("/products/" + this.state.search);
+      window.location.assign("/products?=" + this.state.search);
     };
 
     let isLoggedin = true;
@@ -126,7 +127,15 @@ class App extends Component {
                   </InputGroup>
                   <Nav className="push-right">
                     <NavLink className="link ml-4" to="/checkout">
-                      <i className="fas fa-shopping-cart"></i>&nbsp; Cart
+                      <i className="fas fa-shopping-cart">
+                        Cart
+                        <Badge variant="" style={{ display: "inline" }}>
+                          {this.props.cart.reduce(
+                            (sum, val) => sum + val.quantity,
+                            0
+                          )}
+                        </Badge>
+                      </i>
                     </NavLink>
                   </Nav>
                 </Navbar.Collapse>
@@ -142,7 +151,6 @@ class App extends Component {
                 <Route path="/customize" component={Customize} />
                 <Route path="/checkout" component={Checkout} />
                 <Route exact path="/products" component={Products} />
-                <Route exact path="/products/:search" component={Products} />
                 <Route exact path="/products/:id" component={SingleProduct} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/login" component={Login} />
@@ -202,7 +210,8 @@ function Logout() {
 
 function mapStateToProps(state) {
   return {
-    theme: state.theme
+    theme: state.theme,
+    cart: state.cart
   };
 }
 

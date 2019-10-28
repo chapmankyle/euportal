@@ -108,7 +108,7 @@ class App extends Component {
                       <i className="fas fa-wrench"></i>&nbsp; Customize
                     </NavLink>
                   </Nav>
-                  <InputGroup size="md" className="searchBar">
+                  <InputGroup>
                     <InputGroup.Prepend>
                       <FormControl
                         id="search"
@@ -120,10 +120,10 @@ class App extends Component {
                         className="searchBar"
                       />
                     </InputGroup.Prepend>
+                    <Button variant="outline-info" onClick={() => search()}>
+                      Search
+                    </Button>
                   </InputGroup>
-                  <Button variant="outline-info" onClick={() => search()}>
-                    Search
-                  </Button>
                   <Nav className="push-right">
                     <NavLink className="link ml-4" to="/checkout">
                       <i className="fas fa-shopping-cart"></i>&nbsp; Cart

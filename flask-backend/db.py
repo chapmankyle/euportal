@@ -23,6 +23,7 @@ def generate_session_id(name):
     """Generates a random session ID using a name and the current time."""
     return name + str(int(round(time.time() * 1000)))
 
+
 def execute_query(query, query_info, return_data=False):
     """Executes a query into the database."""
     data = None
@@ -48,7 +49,8 @@ def login_user(email, password):
         if (session == []):
             return ""
         if (get_password_verification(session[0][1], password)):
-            return session[0][0]
+            print((check_if_admin(session[0][0]), session[0][0]))
+            return (check_if_admin(session[0][0]), session[0][0])
         return ""
     if (get_password_verification(session[0][1], password)):
         return session[0][0]
@@ -57,7 +59,7 @@ def login_user(email, password):
 
 def check_if_admin(session):
     query = (
-        "SELECT * FROM staff WHERE session_id=%s" % session)
+        "SELECT * FROM staff WHERE session_id=\"%s\"" % session)
     query_info = (session)
     result = execute_query(query, query_info, True)
     if (result == []):
@@ -99,7 +101,7 @@ def add_product(name, description, price, stock):
 
 def get_customer(session):
     """Gets a customer from the database using the session ID."""
-    query = ("SELECT * FROM customers WHERE session_id like \"%s\"" % session)
+    query = ("SELECT * FROM customers WHERE session_id=\"%s\"" % session)
     query_info = session
     data = execute_query(query, query_info, True)
     print("Getting Customer")
@@ -107,6 +109,19 @@ def get_customer(session):
         return data[0]
     else:
         return False
+
+
+def get_staff(session):
+    """Gets a staff member from the database using the session ID."""
+    query = ("SELECT * FROM staff WHERE session_id=\"%s\"" % session)
+    query_info = session
+    data = execute_query(query, query_info, True)
+    print("Getting Customer")
+    if data:
+        return data[0]
+    else:
+        return False
+
 
 def get_page_info():
     query = ("SELECT about_us FROM settings")
@@ -205,12 +220,14 @@ def delete_product(name):
     execute_query(query, query_info)
     print("Deleted product")
 
+
 def search(searchTerm):
-    query = ('SELECT * FROM dummy.products where name like "%' + searchTerm + '%"');
+    query = ('SELECT * FROM dummy.products where name like "%' + searchTerm + '%"')
     query_info = searchTerm
     data = execute_query(query, query_info, True)
     print(data)
     return data
+
 
 def get_settings():
     """ Get theme settings """

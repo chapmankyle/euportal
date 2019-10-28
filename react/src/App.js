@@ -48,7 +48,6 @@ class App extends Component {
 
   render() {
     const search = () => {
-      console.log(this.props);
       window.location.assign("/products/" + this.state.search);
     };
 
